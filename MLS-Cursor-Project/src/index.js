@@ -18,9 +18,33 @@ const PORT = process.env.PORT || 3000;
 // Connect to database
 connectDB();
 
+// Session configuration
+app.use(session({
+    secret: process.env.SESSION_SECRET || 'fallback_secret',
+    resave: false,
+    saveUninitialized: false,
+    store: MongoStore.create({
+        mongoUrl: process.env.MONGODB_URI
+    })
+}));
+
 // Basic middleware
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use(flash());
+
+// Static files
+app.use(express.static(path.join(__dirname, 'public')));
+
+// View engine
+app.set('view engine', 'ejs');
+app.set('views', path.join(__dirname, 'views'));
+
+// Routes
+app.use('/', require('./routes/index'));
+app.use('/auth', require('./routes/auth'));
+
+// Error handler
 app.use(errorHandler);
 
 // Start server
