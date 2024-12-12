@@ -283,6 +283,16 @@ router.get('/cards', protect, async (req, res) => {
                 }
             },
             {
+                $addFields: {
+                    latestListingDate: { $max: '$listings.modificationTimestamp' }
+                }
+            },
+            {
+                $sort: {
+                    latestListingDate: -1
+                }
+            },
+            {
                 $match: {
                     'listings.0': { $exists: true }
                 }
