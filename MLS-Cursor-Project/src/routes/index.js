@@ -289,7 +289,7 @@ router.get('/cards', protect, async (req, res) => {
             },
             {
                 $sort: {
-                    latestListingDate: -1
+                    latestListingDate: 1
                 }
             },
             {
