@@ -2,11 +2,11 @@
 modules = ["nodejs-20"]
 run = "cd MLS-Cursor-Project && npm start"
 
-[[ports]]
-localPort = 3000
-externalPort = 3000
-
 [deployment]
-run = ["sh", "-c", "npm start"]
+run = ["sh", "-c", "cd MLS-Cursor-Project && npm start"]
 deploymentTarget = "cloudrun"
 ignorePorts = false
+
+[[ports]]
+localPort = 3000
+externalPort = 80

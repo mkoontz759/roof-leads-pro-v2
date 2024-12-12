@@ -19,5 +19,12 @@ const keepAlive = require('./utils/keep_alive');
 const winston = require('winston');
 const MongoStore = require('connect-mongo');
 
-// Rest of your existing index.js code...
-// (keeping all the same code, just fixing the import paths)
+const app = express();
+const PORT = process.env.PORT || 3000;
+
+// Connect to database
+connectDB();
+
+app.listen(PORT, '0.0.0.0', () => {
+    logger.info(`Server running on port ${PORT}`);
+});
