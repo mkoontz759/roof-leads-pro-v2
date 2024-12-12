@@ -207,10 +207,24 @@ app.use(errorHandler);
 // Start the keep-alive ping
 keepAlive();
 
-// Start server
-app.listen(process.env.PORT || 3000, () => {
-  logger.info(`Server running on port ${process.env.PORT || 3000}`);
-});
+// Start server with port retry logic
+let PORT = process.env.PORT || 3000;
+const startServer = (retryCount = 0) => {
+  const server = app.listen(PORT, '0.0.0.0', () => {
+    logger.info(`Server running on port ${PORT}`);
+  }).on('error', (err) => {
+    if (err.code === 'EADDRINUSE' && retryCount < 3) {
+      logger.warn(`Port ${PORT} in use, trying ${PORT + 1}`);
+      PORT++;
+      startServer(retryCount + 1);
+    } else {
+      logger.error('Server failed to start:', err);
+      process.exit(1);
+    }
+  });
+};
+
+startServer();
 
 // Handle uncaught exceptions
 process.on('uncaughtException', (error) => {
@@ -320,4 +334,4 @@ const appStartTime = new Date();
 app.use((req, res, next) => {
     res.locals.appStartTime = appStartTime;
     next();
-}); 
+});
