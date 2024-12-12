@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Register - MLS Dashboard</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f8f9fa;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem 0;
+        }
+        .register-container {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+            width: 100%;
+            max-width: 400px;
+            margin: 1rem;
+        }
+        .form-group {
+            margin-bottom: 1rem;
+        }
+        .btn-register {
+            width: 100%;
+            padding: 0.75rem;
+            font-size: 1rem;
+            background-color: #0d6efd;
+            border: none;
+            margin-top: 1rem;
+        }
+        .login-link {
+            text-align: center;
+            margin-top: 1.5rem;
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 2rem;
+            color: #333;
+            font-size: 2rem;
+        }
+        .name-fields {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+        .form-label {
+            font-weight: 500;
+            color: #444;
+        }
+        .form-control {
+            padding: 0.75rem;
+        }
+        .form-control:focus {
+            box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.15);
+        }
+        .text-muted {
+            font-size: 0.875rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="register-container">
+        <h1>Register</h1>
+
+        <% if (errors && errors.length > 0) { %>
+            <div class="alert alert-danger">
+                <%= errors %>
+            </div>
+        <% } %>
+
+        <form action="/auth/register" method="POST">
+            <div class="name-fields">
+                <div class="form-group">
+                    <label for="firstName" class="form-label">First Name</label>
+                    <input type="text" class="form-control" id="firstName" name="firstName" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="lastName" class="form-label">Last Name</label>
+                    <input type="text" class="form-control" id="lastName" name="lastName" required>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="email" class="form-label">Email</label>
+                <input type="email" class="form-control" id="email" name="email" required>
+            </div>
+
+            <div class="form-group">
+                <label for="password" class="form-label">Password</label>
+                <input type="password" class="form-control" id="password" name="password" required minlength="8">
+                <small class="text-muted">Minimum 8 characters</small>
+            </div>
+
+            <div class="form-group">
+                <label for="phone" class="form-label">Phone (optional)</label>
+                <input type="tel" class="form-control" id="phone" name="phone">
+            </div>
+
+            <button type="submit" class="btn btn-primary btn-register">Create Account</button>
+        </form>
+
+        <div class="login-link">
+            <p class="mb-0">Already have an account? <a href="/auth/login">Login</a></p>
+        </div>
+    </div>
+</body>
+</html> 

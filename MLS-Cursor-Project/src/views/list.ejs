@@ -1,0 +1,29 @@
+<!-- Similar header structure but with table layout -->
+<div class="agent-list">
+    <table class="data-table">
+        <thead>
+            <tr>
+                <th>Agent Name</th>
+                <th>MLS ID</th>
+                <th>Property</th>
+                <th>List Price</th>
+                <th>Pending Date</th>
+                <th>Contact</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% agents.forEach(agent => { %>
+                <tr>
+                    <td><%= agent.name %></td>
+                    <td><%= agent.mlsId %></td>
+                    <td><%= agent.property.address %></td>
+                    <td>$<%= agent.property.price.toLocaleString() %></td>
+                    <td><%= new Date(agent.property.pendingDate).toLocaleDateString() %></td>
+                    <td>
+                        <a href="mailto:<%= agent.email %>"><%= agent.email %></a>
+                    </td>
+                </tr>
+            <% }) %>
+        </tbody>
+    </table>
+</div> 

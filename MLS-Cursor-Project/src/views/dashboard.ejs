@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title><%= title %></title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Poppins:wght@500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/styles.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script>
+        // Helper function to format dates in Central Time
+        function formatCentralTime(dateString) {
+            const date = new Date(dateString);
+            return date.toLocaleDateString('en-US', {
+                month: 'short',
+                day: 'numeric',
+                year: 'numeric',
+            }) + ' at ' + 
+            date.toLocaleTimeString('en-US', {
+                hour: 'numeric',
+                minute: '2-digit',
+                hour12: true
+            });
+        }
+
+        // Auto-refresh the dashboard every 15 minutes (15 * 60 * 1000 milliseconds)
+        setInterval(() => {
+            window.location.reload();
+        }, 15 * 60 * 1000);
+
+        // Manual refresh function
+        function refreshDashboard() {
+            const refreshBtn = document.getElementById('refreshBtn');
+            refreshBtn.classList.add('loading');
+            window.location.reload();
+        }
+    </script>
+    <style>
+        body {
+            padding: 50px;
+            font: 14px "Helvetica Neue", Helvetica, Arial, sans-serif;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+        .stat-card {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+        }
+        .agents-list {
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #dee2e6;
+        }
+        .agent-card {
+            background: white;
+            padding: 1.5rem;
+            margin: 0.75rem 0;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            transition: all 0.2s ease;
+        }
+        .agent-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+        .agent-card h3 {
+            margin: 0 0 1rem 0;
+            color: #2c3e50;
+            font-size: 1.2rem;
+            border-bottom: 2px solid #eee;
+            padding-bottom: 0.5rem;
+        }
+        .agent-card p {
+            margin: 0.5rem 0;
+            color: #34495e;
+            line-height: 1.4;
+        }
+        .agent-card strong {
+            color: #2c3e50;
+            font-weight: 600;
+        }
+        .property-info {
+            margin-top: 1rem;
+            padding-top: 1rem;
+            border-top: 1px solid #eee;
+        }
+        .property-price {
+            color: #27ae60;
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
+        .agent-office {
+            color: #7f8c8d;
+            font-style: italic;
+        }
+        .last-updated {
+            margin-top: 1rem;
+            font-size: 0.9rem;
+            color: #95a5a6;
+        }
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+        }
+        .refresh-btn {
+            padding: 0.5rem 1rem;
+            background: #3498db;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        .refresh-btn:hover {
+            background: #2980b9;
+        }
+        .search-controls {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 2rem;
+        }
+        .search-box {
+            flex: 1;
+            margin-right: 1rem;
+        }
+        .search-box input {
+            width: 100%;
+            padding: 0.5rem;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        .sort-controls {
+            display: flex;
+            gap: 0.5rem;
+        }
+        .sort-controls select {
+            padding: 0.5rem;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        .pagination {
+            margin-top: 2rem;
+            text-align: center;
+        }
+        .pagination a {
+            padding: 0.5rem 1rem;
+            margin: 0 0.25rem;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            text-decoration: none;
+            color: #3498db;
+        }
+        .pagination a:hover {
+            background: #f8f9fa;
+        }
+        .page-info {
+            margin: 0 1rem;
+            color: #7f8c8d;
+        }
+    </style>
+</head>
+<body>
+    <div class="layout-container">
+        <%- include('partials/menu') %>
+
+            <button class="menu-toggle" onclick="toggleMenu()">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="menu-icon">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+                </svg>
+            </button>
+
+        <div class="main-content" id="mainContent">
+            <div class="container">
+                <div class="header">
+                    <h1>Lubbock MLS</h1>
+                    <span class="highlight">Pending Transaction Detail</span>
+                </div>
+
+                <div class="search-controls">
+                    <div class="unified-search">
+                        <select id="sortField" onchange="updateSort()" class="sort-dropdown">
+                            <option value="lastSync" <%= sortField === 'lastSync' ? 'selected' : '' %>>Date</option>
+                            <option value="name" <%= sortField === 'name' ? 'selected' : '' %>>Agent Name</option>
+                            <option value="listingInfo.address" <%= sortField === 'listingInfo.address' ? 'selected' : '' %>>Address</option>
+                        </select>
+                        <input 
+                            type="text" 
+                            id="searchInput" 
+                            placeholder="Search by name, MLS ID, or address..."
+                            value="<%= query || '' %>"
+                        >
+                    </div>
+                </div>
+
+                <div class="stats">
+                    <div class="stat-card">
+                        <h3>Total Agents</h3>
+                        <p><%= stats.totalAgents %></p>
+                    </div>
+                    <div class="stat-card">
+                        <h3>Total Pending Transactions</h3>
+                        <p><%= stats.todaySyncs %></p>
+                    </div>
+                    <div class="stat-card">
+                        <h3>Last Sync</h3>
+                        <p><%= new Date(stats.lastSyncTime).toLocaleString('en-US', {
+                            month: 'short',
+                            day: 'numeric',
+                            year: 'numeric',
+                            hour: 'numeric',
+                            minute: 'numeric',
+                            timeZone: 'America/Chicago',
+                            hour12: true
+                        }) %></p>
+                    </div>
+                </div>
+
+                <div class="agent-cards">
+                    <% agents.forEach(agent => { %>
+                        <div class="agent-card">
+                            <div class="agent-card-header">
+                                <h3><%= agent.firstName %> <%= agent.lastName %></h3>
+                                <p class="mls-id">MLS ID: <%= agent.mlsId %></p>
+                            </div>
+
+                            <div class="agent-card-body">
+                                <% if (agent.email || agent.phone) { %>
+                                    <div class="contact-info">
+                                        <% if (agent.email) { %>
+                                            <p><strong>Email:</strong> <a href="mailto:<%= agent.email %>" class="contact-link"><%= agent.email %></a></p>
+                                        <% } %>
+                                        <% if (agent.phone) { %>
+                                            <p><strong>Phone:</strong> <a href="tel:<%= agent.phone %>" class="contact-link"><%= agent.phone %></a></p>
+                                        <% } %>
+                                    </div>
+                                <% } %>
+
+                                <p class="agent-office"><strong>Office:</strong> <%= agent.officeName %></p>
+
+                                <% if (agent.listings && agent.listings.length > 0) { %>
+                                    <% agent.listings.forEach(listing => { %>
+                                        <div class="property-info">
+                                            <% if (listing.mlsNumber) { %>
+                                                <p><strong>MLS#:</strong> <%= listing.mlsNumber %></p>
+                                            <% } %>
+
+                                            <% if (listing.address) { %>
+                                                <p><strong>Address:</strong> 
+                                                    <%= listing.address.street %>, 
+                                                    <%= listing.address.city %>, 
+                                                    <%= listing.address.state %> 
+                                                    <%= listing.address.zip %>
+                                                </p>
+                                            <% } %>
+
+                                            <p class="property-price">
+                                                <strong>List Price:</strong> $<%= listing.listPrice?.toLocaleString() || 'N/A' %>
+                                            </p>
+
+                                            <% if (listing.closePrice) { %>
+                                                <p class="property-price">
+                                                    <strong>Close Price:</strong> $<%= listing.closePrice.toLocaleString() %>
+                                                </p>
+                                            <% } %>
+
+                                            <div class="property-details">
+                                                <% if (listing.propertyType) { %>
+                                                    <p><strong>Type:</strong> <%= listing.propertyType %></p>
+                                                <% } %>
+
+                                                <p>
+                                                    <% if (listing.bedrooms) { %>
+                                                        <strong>Beds:</strong> <%= listing.bedrooms %>
+                                                    <% } %>
+                                                    <% if (listing.bathrooms) { %>
+                                                        <strong>Baths:</strong> <%= listing.bathrooms %>
+                                                    <% } %>
+                                                    <% if (listing.squareFootage) { %>
+                                                        <strong>SqFt:</strong> <%= listing.squareFootage.toLocaleString() %>
+                                                    <% } %>
+                                                </p>
+
+                                                <% if (listing.yearBuilt) { %>
+                                                    <p><strong>Year Built:</strong> <%= listing.yearBuilt %></p>
+                                                <% } %>
+
+                                                <% if (listing.lotSize) { %>
+                                                    <p><strong>Lot Size:</strong> <%= listing.lotSize %></p>
+                                                <% } %>
+
+                                                <% if (listing.garageSpaces) { %>
+                                                    <p><strong>Garage:</strong> <%= listing.garageSpaces %> spaces</p>
+                                                <% } %>
+
+                                                <% if (listing.pool) { %>
+                                                    <p><strong>Pool:</strong> Yes</p>
+                                                <% } %>
+
+                                                <% if (listing.propertyStyle) { %>
+                                                    <p><strong>Style:</strong> <%= listing.propertyStyle %></p>
+                                                <% } %>
+
+                                                <% if (listing.daysOnMarket) { %>
+                                                    <p><strong>Days on Market:</strong> <%= listing.daysOnMarket %></p>
+                                                <% } %>
+                                            </div>
+                                        </div>
+                                    <% }); %>
+                                <% } %>
+
+                                <p class="last-updated">
+                                    <strong>Last Updated:</strong> 
+                                    <%= new Date(agent.lastUpdated).toLocaleDateString('en-US', {
+                                        month: 'short',
+                                        day: 'numeric',
+                                        year: 'numeric',
+                                        hour: 'numeric',
+                                        minute: 'numeric',
+                                        timeZone: 'America/Chicago'
+                                    }) %>
+                                </p>
+                            </div>
+                        </div>
+                    <% }); %>
+                </div>
+
+                <div class="pagination">
+                    <% if (pagination.hasPrev) { %>
+                        <a href="?page=<%= pagination.currentPage - 1 %>&query=<%= query %>&sortField=<%= sortField %>&sortOrder=<%= sortOrder %>">&laquo; Previous</a>
+                    <% } %>
+
+                    <span class="page-info">
+                        Page <%= pagination.currentPage %> of <%= pagination.pages %>
+                    </span>
+
+                    <% if (pagination.hasNext) { %>
+                        <a href="?page=<%= pagination.currentPage + 1 %>&query=<%= query %>&sortField=<%= sortField %>&sortOrder=<%= sortOrder %>">Next &raquo;</a>
+                    <% } %>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+    function search() {
+        const query = document.getElementById('searchInput').value;
+        const sortField = document.getElementById('sortField').value;
+        const sortOrder = document.querySelector('.sort-order').classList.contains('desc') ? 'desc' : 'asc';
+
+        window.location.href = `?query=${encodeURIComponent(query)}&sortField=${sortField}&sortOrder=${sortOrder}`;
+    }
+
+    function updateSort() {
+        search();
+    }
+
+    function toggleSortOrder() {
+        const btn = document.querySelector('.sort-order');
+        btn.classList.toggle('desc');
+        btn.classList.toggle('asc');
+        search();
+    }
+
+    // Add event listener for Enter key in search input
+    document.getElementById('searchInput').addEventListener('keypress', function(e) {
+        if (e.key === 'Enter') {
+            search();
+        }
+    });
+
+    function toggleMenu() {
+        const sideMenu = document.getElementById('sideMenu');
+        const menuToggle = document.querySelector('.menu-toggle');
+        const mainContent = document.getElementById('mainContent');
+
+        sideMenu.classList.toggle('collapsed');
+        menuToggle.classList.toggle('collapsed');
+        mainContent.classList.toggle('menu-collapsed');
+    }
+    </script>
+</body>
+</html> 
