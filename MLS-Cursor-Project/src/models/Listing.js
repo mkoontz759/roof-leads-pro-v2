@@ -1,7 +1,25 @@
+
 const mongoose = require('mongoose');
 
-// Define a flexible schema that allows any fields
-const listingSchema = new mongoose.Schema({}, { strict: false });
+const listingSchema = new mongoose.Schema({
+    listingKey: { type: String, required: true, unique: true },
+    listPrice: Number,
+    listAgentKey: String,
+    address: {
+        street: String,
+        city: String,
+        state: String,
+        zip: String
+    },
+    modificationTimestamp: Date,
+    status: String
+}, { 
+    timestamps: true,
+    strict: false 
+});
 
-// Check if model exists before creating
-module.exports = mongoose.models.Listing || mongoose.model('Listing', listingSchema); 
+// Create indexes
+listingSchema.index({ listAgentKey: 1 });
+listingSchema.index({ modificationTimestamp: -1 });
+
+module.exports = mongoose.models.Listing || mongoose.model('Listing', listingSchema);

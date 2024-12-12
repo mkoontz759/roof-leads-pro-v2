@@ -42,6 +42,23 @@ router.get('/dashboard', protect, async (req, res) => {
         const pendingTransactions = await Listing.find({}).lean();
         const agentKeys = [...new Set(pendingTransactions.map(t => t.listAgentKey))].filter(Boolean);
 
+
+// Debug route to check data
+router.get('/debug-data', protect, async (req, res) => {
+    try {
+        const listings = await Listing.find().limit(5).lean();
+        const agents = await Agent.find().limit(5).lean();
+        res.json({
+            listings: listings,
+            agents: agents,
+            listingCount: await Listing.countDocuments(),
+            agentCount: await Agent.countDocuments()
+        });
+    } catch (error) {
+        res.status(500).json({ error: error.message });
+    }
+});
+
         // Get agents with their pending listings
         const agents = await Agent.aggregate([
             {
@@ -256,10 +273,7 @@ router.get('/cards', protect, async (req, res) => {
                         {
                             $match: {
                                 $expr: { 
-                                    $and: [
-                                        { $eq: ['$listAgentKey', '$$agentKey'] },
-                                        { $eq: ['$status', 'Pending'] }
-                                    ]
+                                    $eq: ['$listAgentKey', '$$agentKey']
                                 }
                             }
                         },
