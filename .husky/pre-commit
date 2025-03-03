@@ -1,0 +1,4 @@
+#!/usr/bin/env sh
+
+# Run linting before commit
+npm run lint 
