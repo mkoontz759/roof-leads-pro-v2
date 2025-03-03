@@ -1,0 +1,1518 @@
+{
+    "samples": {
+        "agentWithMostListings": {
+            "__v": 0,
+            "_id": "67c4c4ab638435eaf91e208e",
+            "association": "aar",
+            "email": "",
+            "fullName": "Robert McHugh",
+            "memberKey": "20000208150206872895000000",
+            "officeName": "Amarillo Appraisal",
+            "pendingListings": [],
+            "phone": "806-356-0290",
+            "source": "spark",
+            "sourceId": "20000208150206872895000000",
+            "updatedAt": "2025-03-02T20:50:51.135Z"
+        },
+        "sampleAgents": [
+            {
+                "__v": 0,
+                "_id": "67c4c4ab638435eaf91e208e",
+                "association": "aar",
+                "email": "",
+                "fullName": "Robert McHugh",
+                "memberKey": "20000208150206872895000000",
+                "officeName": "Amarillo Appraisal",
+                "pendingListings": [],
+                "phone": "806-356-0290",
+                "source": "spark",
+                "sourceId": "20000208150206872895000000",
+                "updatedAt": "2025-03-02T20:50:51.135Z"
+            },
+            {
+                "__v": 0,
+                "_id": "67c4c4ab638435eaf91e208f",
+                "association": "aar",
+                "email": "gglenn@sweethomeamarillo.com",
+                "fullName": "Greg Glenn",
+                "memberKey": "20000208150207820453000000",
+                "officeName": "Coldwell Banker First Equity",
+                "pendingListings": [
+                    {
+                        "_id": "67c4c4abf87ba067b4ec5c1b",
+                        "address": "Unknown Address in Amarillo",
+                        "city": "Amarillo",
+                        "listPrice": 149000,
+                        "pendingDate": "2025-03-02T20:50:51.129Z",
+                        "state": "",
+                        "zipCode": "25-17"
+                    },
+                    {
+                        "_id": "67c4c4abf87ba067b4ec5c1c",
+                        "address": "Unknown Address in Amarillo",
+                        "city": "Amarillo",
+                        "listPrice": 392900,
+                        "pendingDate": "2025-03-02T20:50:51.129Z",
+                        "state": "",
+                        "zipCode": "24-97"
+                    },
+                    {
+                        "_id": "67c4c4abf87ba067b4ec5c1d",
+                        "address": "Unknown Address in Amarillo",
+                        "city": "Amarillo",
+                        "listPrice": 440000,
+                        "pendingDate": "2025-03-02T20:50:51.129Z",
+                        "state": "",
+                        "zipCode": "25-12"
+                    },
+                    {
+                        "_id": "67c4c4abf87ba067b4ec5c1e",
+                        "address": "Unknown Address in Amarillo",
+                        "city": "Amarillo",
+                        "listPrice": 529900,
+                        "pendingDate": "2025-03-02T20:50:51.129Z",
+                        "state": "",
+                        "zipCode": "24-80"
+                    },
+                    {
+                        "_id": "67c4c4abf87ba067b4ec5c1f",
+                        "address": "Unknown Address in Amarillo",
+                        "city": "Amarillo",
+                        "listPrice": 98500,
+                        "pendingDate": "2025-03-02T20:50:51.129Z",
+                        "state": "",
+                        "zipCode": "24-29"
+                    },
+                    {
+                        "_id": "67c4c4abf87ba067b4ec5c20",
+                        "address": "Unknown Address in Amarillo",
+                        "city": "Amarillo",
+                        "listPrice": 215000,
+                        "pendingDate": "2025-03-02T20:50:51.129Z",
+                        "state": "",
+                        "zipCode": "25-17"
+                    },
+                    {
+                        "_id": "67c4c4abf87ba067b4ec5c21",
+                        "address": "Unknown Address in Amarillo",
+                        "city": "Amarillo",
+                        "listPrice": 444999,
+                        "pendingDate": "2025-03-02T20:50:51.129Z",
+                        "state": "",
+                        "zipCode": "25-1"
+                    },
+                    {
+                        "_id": "67c4c4abf87ba067b4ec5c22",
+                        "address": "Unknown Address in Amarillo",
+                        "city": "Amarillo",
+                        "listPrice": 310000,
+                        "pendingDate": "2025-03-02T20:50:51.129Z",
+                        "state": "",
+                        "zipCode": "25-16"
+                    },
+                    {
+                        "_id": "67c4c4abf87ba067b4ec5c23",
+                        "address": "Unknown Address in Amarillo",
+                        "city": "Amarillo",
+                        "listPrice": 85000,
+                        "pendingDate": "2025-03-02T20:50:51.129Z",
+                        "state": "",
+                        "zipCode": "25-16"
+                    },
+                    {
+                        "_id": "67c4c4abf87ba067b4ec5c24",
+                        "address": "Unknown Address in Amarillo",
+                        "city": "Amarillo",
+                        "listPrice": 289000,
+                        "pendingDate": "2025-03-02T20:50:51.129Z",
+                        "state": "",
+                        "zipCode": "25-19"
+                    },
+                    {
+                        "_id": "67c4c4abf87ba067b4ec5c25",
+                        "address": "Unknown Address in Amarillo",
+                        "city": "Amarillo",
+                        "listPrice": 169000,
+                        "pendingDate": "2025-03-02T20:50:51.129Z",
+                        "state": "",
+                        "zipCode": "25-17"
+                    },
+                    {
+                        "_id": "67c4c4abf87ba067b4ec5c26",
+                        "address": "Unknown Address in Amarillo",
+                        "city": "Amarillo",
+                        "listPrice": 264000,
+                        "pendingDate": "2025-03-02T20:50:51.129Z",
+                        "state": "",
+                        "zipCode": "25-11"
+                    },
+                    {
+                        "_id": "67c4c4abf87ba067b4ec5c27",
+                        "address": "Unknown Address in Amarillo",
+                        "city": "Amarillo",
+                        "listPrice": 724900,
+                        "pendingDate": "2025-03-02T20:50:51.129Z",
+                        "state": "",
+                        "zipCode": "24-99"
+                    },
+                    {
+                        "_id": "67c4c4abf87ba067b4ec5c28",
+                        "address": "Unknown Address in Amarillo",
+                        "city": "Amarillo",
+                        "listPrice": 395003,
+                        "pendingDate": "2025-03-02T20:50:51.129Z",
+                        "state": "",
+                        "zipCode": "24-79"
+                    },
+                    {
+                        "_id": "67c4c4abf87ba067b4ec5c29",
+                        "address": "Unknown Address in Amarillo",
+                        "city": "Amarillo",
+                        "listPrice": 279900,
+                        "pendingDate": "2025-03-02T20:50:51.129Z",
+                        "state": "",
+                        "zipCode": "25-16"
+                    },
+                    {
+                        "_id": "67c4c4abf87ba067b4ec5c2a",
+                        "address": "Unknown Address in Amarillo",
+                        "city": "Amarillo",
+                        "listPrice": 220000,
+                        "pendingDate": "2025-03-02T20:50:51.129Z",
+                        "state": "",
+                        "zipCode": "25-91"
+                    },
+                    {
+                        "_id": "67c4c4abf87ba067b4ec5c2b",
+                        "address": "Unknown Address in Amarillo",
+                        "city": "Amarillo",
+                        "listPrice": 325000,
+                        "pendingDate": "2025-03-02T20:50:51.129Z",
+                        "state": "",
+                        "zipCode": "25-16"
+                    },
+                    {
+                        "_id": "67c4c4abf87ba067b4ec5c2c",
+                        "address": "Unknown Address in Amarillo",
+                        "city": "Amarillo",
+                        "listPrice": 625000,
+                        "pendingDate": "2025-03-02T20:50:51.129Z",
+                        "state": "",
+                        "zipCode": "25-17"
+                    },
+                    {
+                        "_id": "67c4c4abf87ba067b4ec5c2d",
+                        "address": "Unknown Address in Amarillo",
+                        "city": "Amarillo",
+                        "listPrice": 265000,
+                        "pendingDate": "2025-03-02T20:50:51.129Z",
+                        "state": "",
+                        "zipCode": "25-35"
+                    },
+                    {
+                        "_id": "67c4c4abf87ba067b4ec5c2e",
+                        "address": "Unknown Address in Amarillo",
+                        "city": "Amarillo",
+                        "listPrice": 289900,
+                        "pendingDate": "2025-03-02T20:50:51.129Z",
+                        "state": "",
+                        "zipCode": "25-3"
+                    },
+                    {
+                        "_id": "67c4c4abf87ba067b4ec5c2f",
+                        "address": "Unknown Address in Amarillo",
+                        "city": "Amarillo",
+                        "listPrice": 139900,
+                        "pendingDate": "2025-03-02T20:50:51.129Z",
+                        "state": "",
+                        "zipCode": "24-75"
+                    },
+                    {
+                        "_id": "67c4c4abf87ba067b4ec5c30",
+                        "address": "Unknown Address in Amarillo",
+                        "city": "Amarillo",
+                        "listPrice": 109000,
+                        "pendingDate": "2025-03-02T20:50:51.129Z",
+                        "state": "",
+                        "zipCode": "25-13"
+                    },
+                    {
+                        "_id": "67c4c4abf87ba067b4ec5c31",
+                        "address": "Unknown Address in Amarillo",
+                        "city": "Amarillo",
+                        "listPrice": 88000,
+                        "pendingDate": "2025-03-02T20:50:51.129Z",
+                        "state": "",
+                        "zipCode": "25-13"
+                    },
+                    {
+                        "_id": "67c4c4abf87ba067b4ec5c32",
+                        "address": "Unknown Address in Amarillo",
+                        "city": "Amarillo",
+                        "listPrice": 89000,
+                        "pendingDate": "2025-03-02T20:50:51.129Z",
+                        "state": "",
+                        "zipCode": "25-13"
+                    },
+                    {
+                        "_id": "67c4c4abf87ba067b4ec5c33",
+                        "address": "Unknown Address in Amarillo",
+                        "city": "Amarillo",
+                        "listPrice": 259900,
+                        "pendingDate": "2025-03-02T20:50:51.129Z",
+                        "state": "",
+                        "zipCode": "25-40"
+                    },
+                    {
+                        "_id": "67c4c4abf87ba067b4ec5c34",
+                        "address": "Unknown Address in Amarillo",
+                        "city": "Amarillo",
+                        "listPrice": 269000,
+                        "pendingDate": "2025-03-02T20:50:51.129Z",
+                        "state": "",
+                        "zipCode": "25-98"
+                    },
+                    {
+                        "_id": "67c4c4abf87ba067b4ec5c35",
+                        "address": "Unknown Address in Amarillo",
+                        "city": "Amarillo",
+                        "listPrice": 50000,
+                        "pendingDate": "2025-03-02T20:50:51.129Z",
+                        "state": "",
+                        "zipCode": "24-93"
+                    },
+                    {
+                        "_id": "67c4c4abf87ba067b4ec5c36",
+                        "address": "Unknown Address in Amarillo",
+                        "city": "Amarillo",
+                        "listPrice": 169900,
+                        "pendingDate": "2025-03-02T20:50:51.129Z",
+                        "state": "",
+                        "zipCode": "24-10"
+                    },
+                    {
+                        "_id": "67c4c4abf87ba067b4ec5c37",
+                        "address": "Unknown Address in Amarillo",
+                        "city": "Amarillo",
+                        "listPrice": 255000,
+                        "pendingDate": "2025-03-02T20:50:51.129Z",
+                        "state": "",
+                        "zipCode": "25-10"
+                    },
+                    {
+                        "_id": "67c4c4abf87ba067b4ec5c38",
+                        "address": "Unknown Address in Amarillo",
+                        "city": "Amarillo",
+                        "listPrice": 142500,
+                        "pendingDate": "2025-03-02T20:50:51.129Z",
+                        "state": "",
+                        "zipCode": "25-14"
+                    },
+                    {
+                        "_id": "67c4c4abf87ba067b4ec5c39",
+                        "address": "Unknown Address in Amarillo",
+                        "city": "Amarillo",
+                        "listPrice": 155000,
+                        "pendingDate": "2025-03-02T20:50:51.129Z",
+                        "state": "",
+                        "zipCode": "24-78"
+                    },
+                    {
+                        "_id": "67c4c4abf87ba067b4ec5c3a",
+                        "address": "Unknown Address in Amarillo",
+                        "city": "Amarillo",
+                        "listPrice": 259241,
+                        "pendingDate": "2025-03-02T20:50:51.129Z",
+                        "state": "",
+                        "zipCode": "24-52"
+                    },
+                    {
+                        "_id": "67c4c4abf87ba067b4ec5c3b",
+                        "address": "Unknown Address in Amarillo",
+                        "city": "Amarillo",
+                        "listPrice": 178000,
+                        "pendingDate": "2025-03-02T20:50:51.129Z",
+                        "state": "",
+                        "zipCode": "24-59"
+                    },
+                    {
+                        "_id": "67c4c4abf87ba067b4ec5c3c",
+                        "address": "Unknown Address in Amarillo",
+                        "city": "Amarillo",
+                        "listPrice": 269000,
+                        "pendingDate": "2025-03-02T20:50:51.129Z",
+                        "state": "",
+                        "zipCode": "24-10"
+                    },
+                    {
+                        "_id": "67c4c4abf87ba067b4ec5c3d",
+                        "address": "Unknown Address in Amarillo",
+                        "city": "Amarillo",
+                        "listPrice": 205000,
+                        "pendingDate": "2025-03-02T20:50:51.129Z",
+                        "state": "",
+                        "zipCode": "25-17"
+                    },
+                    {
+                        "_id": "67c4c4abf87ba067b4ec5c3e",
+                        "address": "Unknown Address in Amarillo",
+                        "city": "Amarillo",
+                        "listPrice": 226800,
+                        "pendingDate": "2025-03-02T20:50:51.129Z",
+                        "state": "",
+                        "zipCode": "25-83"
+                    },
+                    {
+                        "_id": "67c4c4abf87ba067b4ec5c3f",
+                        "address": "Unknown Address in Amarillo",
+                        "city": "Amarillo",
+                        "listPrice": 245250,
+                        "pendingDate": "2025-03-02T20:50:51.129Z",
+                        "state": "",
+                        "zipCode": "24-30"
+                    },
+                    {
+                        "_id": "67c4c4abf87ba067b4ec5c40",
+                        "address": "Unknown Address in Amarillo",
+                        "city": "Amarillo",
+                        "listPrice": 400000,
+                        "pendingDate": "2025-03-02T20:50:51.129Z",
+                        "state": "",
+                        "zipCode": "24-98"
+                    },
+                    {
+                        "_id": "67c4c4abf87ba067b4ec5c41",
+                        "address": "Unknown Address in Amarillo",
+                        "city": "Amarillo",
+                        "listPrice": 240000,
+                        "pendingDate": "2025-03-02T20:50:51.129Z",
+                        "state": "",
+                        "zipCode": "25-13"
+                    },
+                    {
+                        "_id": "67c4c4abf87ba067b4ec5c42",
+                        "address": "Unknown Address in Amarillo",
+                        "city": "Amarillo",
+                        "listPrice": 225000,
+                        "pendingDate": "2025-03-02T20:50:51.129Z",
+                        "state": "",
+                        "zipCode": "25-15"
+                    },
+                    {
+                        "_id": "67c4c4abf87ba067b4ec5c43",
+                        "address": "Unknown Address in Amarillo",
+                        "city": "Amarillo",
+                        "listPrice": 219995,
+                        "pendingDate": "2025-03-02T20:50:51.129Z",
+                        "state": "",
+                        "zipCode": "24-10"
+                    },
+                    {
+                        "_id": "67c4c4abf87ba067b4ec5c44",
+                        "address": "Unknown Address in Amarillo",
+                        "city": "Amarillo",
+                        "listPrice": 205000,
+                        "pendingDate": "2025-03-02T20:50:51.129Z",
+                        "state": "",
+                        "zipCode": "25-19"
+                    },
+                    {
+                        "_id": "67c4c4abf87ba067b4ec5c45",
+                        "address": "Unknown Address in Amarillo",
+                        "city": "Amarillo",
+                        "listPrice": 262200,
+                        "pendingDate": "2025-03-02T20:50:51.129Z",
+                        "state": "",
+                        "zipCode": "25-16"
+                    },
+                    {
+                        "_id": "67c4c4abf87ba067b4ec5c46",
+                        "address": "Unknown Address in Amarillo",
+                        "city": "Amarillo",
+                        "listPrice": 199000,
+                        "pendingDate": "2025-03-02T20:50:51.129Z",
+                        "state": "",
+                        "zipCode": "25-12"
+                    },
+                    {
+                        "_id": "67c4c4abf87ba067b4ec5c47",
+                        "address": "Unknown Address in Amarillo",
+                        "city": "Amarillo",
+                        "listPrice": 450000,
+                        "pendingDate": "2025-03-02T20:50:51.129Z",
+                        "state": "",
+                        "zipCode": "24-79"
+                    },
+                    {
+                        "_id": "67c4c4abf87ba067b4ec5c48",
+                        "address": "Unknown Address in Amarillo",
+                        "city": "Amarillo",
+                        "listPrice": 814000,
+                        "pendingDate": "2025-03-02T20:50:51.129Z",
+                        "state": "",
+                        "zipCode": "25-18"
+                    },
+                    {
+                        "_id": "67c4c4abf87ba067b4ec5c49",
+                        "address": "Unknown Address in Amarillo",
+                        "city": "Amarillo",
+                        "listPrice": 254000,
+                        "pendingDate": "2025-03-02T20:50:51.129Z",
+                        "state": "",
+                        "zipCode": "25-14"
+                    },
+                    {
+                        "_id": "67c4c4abf87ba067b4ec5c4a",
+                        "address": "Unknown Address in Amarillo",
+                        "city": "Amarillo",
+                        "listPrice": 217900,
+                        "pendingDate": "2025-03-02T20:50:51.129Z",
+                        "state": "",
+                        "zipCode": "24-53"
+                    },
+                    {
+                        "_id": "67c4c4abf87ba067b4ec5c4b",
+                        "address": "Unknown Address in Amarillo",
+                        "city": "Amarillo",
+                        "listPrice": 284000,
+                        "pendingDate": "2025-03-02T20:50:51.129Z",
+                        "state": "",
+                        "zipCode": "25-65"
+                    },
+                    {
+                        "_id": "67c4c4abf87ba067b4ec5c4c",
+                        "address": "Unknown Address in Amarillo",
+                        "city": "Amarillo",
+                        "listPrice": 309900,
+                        "pendingDate": "2025-03-02T20:50:51.129Z",
+                        "state": "",
+                        "zipCode": "25-37"
+                    },
+                    {
+                        "_id": "67c4c4abf87ba067b4ec5c4d",
+                        "address": "Unknown Address in Amarillo",
+                        "city": "Amarillo",
+                        "listPrice": 190000,
+                        "pendingDate": "2025-03-02T20:50:51.129Z",
+                        "state": "",
+                        "zipCode": "25-16"
+                    },
+                    {
+                        "_id": "67c4c4abf87ba067b4ec5c4e",
+                        "address": "Unknown Address in Amarillo",
+                        "city": "Amarillo",
+                        "listPrice": 649900,
+                        "pendingDate": "2025-03-02T20:50:51.129Z",
+                        "state": "",
+                        "zipCode": "25-12"
+                    },
+                    {
+                        "_id": "67c4c4abf87ba067b4ec5c4f",
+                        "address": "Unknown Address in Amarillo",
+                        "city": "Amarillo",
+                        "listPrice": 199000,
+                        "pendingDate": "2025-03-02T20:50:51.129Z",
+                        "state": "",
+                        "zipCode": "25-12"
+                    },
+                    {
+                        "_id": "67c4c4abf87ba067b4ec5c50",
+                        "address": "Unknown Address in Amarillo",
+                        "city": "Amarillo",
+                        "listPrice": 180670,
+                        "pendingDate": "2025-03-02T20:50:51.129Z",
+                        "state": "",
+                        "zipCode": "25-18"
+                    },
+                    {
+                        "_id": "67c4c4abf87ba067b4ec5c51",
+                        "address": "Unknown Address in Amarillo",
+                        "city": "Amarillo",
+                        "listPrice": 305920,
+                        "pendingDate": "2025-03-02T20:50:51.129Z",
+                        "state": "",
+                        "zipCode": "24-38"
+                    },
+                    {
+                        "_id": "67c4c4abf87ba067b4ec5c52",
+                        "address": "Unknown Address in Amarillo",
+                        "city": "Amarillo",
+                        "listPrice": 218500,
+                        "pendingDate": "2025-03-02T20:50:51.129Z",
+                        "state": "",
+                        "zipCode": "24-84"
+                    },
+                    {
+                        "_id": "67c4c4abf87ba067b4ec5c53",
+                        "address": "Unknown Address in Amarillo",
+                        "city": "Amarillo",
+                        "listPrice": 285000,
+                        "pendingDate": "2025-03-02T20:50:51.129Z",
+                        "state": "",
+                        "zipCode": "24-85"
+                    },
+                    {
+                        "_id": "67c4c4abf87ba067b4ec5c54",
+                        "address": "Unknown Address in Amarillo",
+                        "city": "Amarillo",
+                        "listPrice": 341000,
+                        "pendingDate": "2025-03-02T20:50:51.129Z",
+                        "state": "",
+                        "zipCode": "25-11"
+                    },
+                    {
+                        "_id": "67c4c4abf87ba067b4ec5c55",
+                        "address": "Unknown Address in Amarillo",
+                        "city": "Amarillo",
+                        "listPrice": 290747,
+                        "pendingDate": "2025-03-02T20:50:51.129Z",
+                        "state": "",
+                        "zipCode": "24-10"
+                    },
+                    {
+                        "_id": "67c4c4abf87ba067b4ec5c56",
+                        "address": "Unknown Address in Amarillo",
+                        "city": "Amarillo",
+                        "listPrice": 265000,
+                        "pendingDate": "2025-03-02T20:50:51.129Z",
+                        "state": "",
+                        "zipCode": "25-11"
+                    },
+                    {
+                        "_id": "67c4c4abf87ba067b4ec5c57",
+                        "address": "Unknown Address in Amarillo",
+                        "city": "Amarillo",
+                        "listPrice": 215000,
+                        "pendingDate": "2025-03-02T20:50:51.129Z",
+                        "state": "",
+                        "zipCode": "24-96"
+                    },
+                    {
+                        "_id": "67c4c4abf87ba067b4ec5c58",
+                        "address": "Unknown Address in Amarillo",
+                        "city": "Amarillo",
+                        "listPrice": 245000,
+                        "pendingDate": "2025-03-02T20:50:51.129Z",
+                        "state": "",
+                        "zipCode": "24-62"
+                    },
+                    {
+                        "_id": "67c4c4abf87ba067b4ec5c59",
+                        "address": "Unknown Address in Amarillo",
+                        "city": "Amarillo",
+                        "listPrice": 199000,
+                        "pendingDate": "2025-03-02T20:50:51.129Z",
+                        "state": "",
+                        "zipCode": "24-10"
+                    },
+                    {
+                        "_id": "67c4c4abf87ba067b4ec5c5a",
+                        "address": "Unknown Address in Amarillo",
+                        "city": "Amarillo",
+                        "listPrice": 421900,
+                        "pendingDate": "2025-03-02T20:50:51.129Z",
+                        "state": "",
+                        "zipCode": "24-10"
+                    },
+                    {
+                        "_id": "67c4c4abf87ba067b4ec5c5b",
+                        "address": "Unknown Address in Amarillo",
+                        "city": "Amarillo",
+                        "listPrice": 230000,
+                        "pendingDate": "2025-03-02T20:50:51.129Z",
+                        "state": "",
+                        "zipCode": "25-16"
+                    },
+                    {
+                        "_id": "67c4c4abf87ba067b4ec5c5c",
+                        "address": "Unknown Address in Amarillo",
+                        "city": "Amarillo",
+                        "listPrice": 110000,
+                        "pendingDate": "2025-03-02T20:50:51.129Z",
+                        "state": "",
+                        "zipCode": "25-12"
+                    },
+                    {
+                        "_id": "67c4c4abf87ba067b4ec5c5d",
+                        "address": "Unknown Address in Amarillo",
+                        "city": "Amarillo",
+                        "listPrice": 359900,
+                        "pendingDate": "2025-03-02T20:50:51.129Z",
+                        "state": "",
+                        "zipCode": "24-94"
+                    },
+                    {
+                        "_id": "67c4c4abf87ba067b4ec5c5e",
+                        "address": "Unknown Address in Amarillo",
+                        "city": "Amarillo",
+                        "listPrice": 198500,
+                        "pendingDate": "2025-03-02T20:50:51.129Z",
+                        "state": "",
+                        "zipCode": "25-13"
+                    },
+                    {
+                        "_id": "67c4c4abf87ba067b4ec5c5f",
+                        "address": "Unknown Address in Amarillo",
+                        "city": "Amarillo",
+                        "listPrice": 225000,
+                        "pendingDate": "2025-03-02T20:50:51.129Z",
+                        "state": "",
+                        "zipCode": "25-18"
+                    },
+                    {
+                        "_id": "67c4c4abf87ba067b4ec5c60",
+                        "address": "Unknown Address in Amarillo",
+                        "city": "Amarillo",
+                        "listPrice": 219000,
+                        "pendingDate": "2025-03-02T20:50:51.129Z",
+                        "state": "",
+                        "zipCode": "24-70"
+                    },
+                    {
+                        "_id": "67c4c4abf87ba067b4ec5c61",
+                        "address": "Unknown Address in Amarillo",
+                        "city": "Amarillo",
+                        "listPrice": 304900,
+                        "pendingDate": "2025-03-02T20:50:51.129Z",
+                        "state": "",
+                        "zipCode": "24-91"
+                    },
+                    {
+                        "_id": "67c4c4abf87ba067b4ec5c62",
+                        "address": "Unknown Address in Amarillo",
+                        "city": "Amarillo",
+                        "listPrice": 335000,
+                        "pendingDate": "2025-03-02T20:50:51.129Z",
+                        "state": "",
+                        "zipCode": "25-10"
+                    },
+                    {
+                        "_id": "67c4c4abf87ba067b4ec5c63",
+                        "address": "Unknown Address in Amarillo",
+                        "city": "Amarillo",
+                        "listPrice": 130000,
+                        "pendingDate": "2025-03-02T20:50:51.129Z",
+                        "state": "",
+                        "zipCode": "25-15"
+                    },
+                    {
+                        "_id": "67c4c4abf87ba067b4ec5c64",
+                        "address": "Unknown Address in Amarillo",
+                        "city": "Amarillo",
+                        "listPrice": 249000,
+                        "pendingDate": "2025-03-02T20:50:51.129Z",
+                        "state": "",
+                        "zipCode": "25-10"
+                    },
+                    {
+                        "_id": "67c4c4abf87ba067b4ec5c65",
+                        "address": "Unknown Address in Amarillo",
+                        "city": "Amarillo",
+                        "listPrice": 178000,
+                        "pendingDate": "2025-03-02T20:50:51.129Z",
+                        "state": "",
+                        "zipCode": "24-97"
+                    },
+                    {
+                        "_id": "67c4c4abf87ba067b4ec5c66",
+                        "address": "Unknown Address in Amarillo",
+                        "city": "Amarillo",
+                        "listPrice": 288000,
+                        "pendingDate": "2025-03-02T20:50:51.129Z",
+                        "state": "",
+                        "zipCode": "25-15"
+                    },
+                    {
+                        "_id": "67c4c4abf87ba067b4ec5c67",
+                        "address": "Unknown Address in Amarillo",
+                        "city": "Amarillo",
+                        "listPrice": 277035,
+                        "pendingDate": "2025-03-02T20:50:51.129Z",
+                        "state": "",
+                        "zipCode": "25-12"
+                    },
+                    {
+                        "_id": "67c4c4abf87ba067b4ec5c68",
+                        "address": "Unknown Address in Amarillo",
+                        "city": "Amarillo",
+                        "listPrice": 429000,
+                        "pendingDate": "2025-03-02T20:50:51.129Z",
+                        "state": "",
+                        "zipCode": "25-18"
+                    },
+                    {
+                        "_id": "67c4c4abf87ba067b4ec5c69",
+                        "address": "Unknown Address in Amarillo",
+                        "city": "Amarillo",
+                        "listPrice": 290369,
+                        "pendingDate": "2025-03-02T20:50:51.129Z",
+                        "state": "",
+                        "zipCode": "25-12"
+                    },
+                    {
+                        "_id": "67c4c4abf87ba067b4ec5c6a",
+                        "address": "Unknown Address in Amarillo",
+                        "city": "Amarillo",
+                        "listPrice": 169900,
+                        "pendingDate": "2025-03-02T20:50:51.129Z",
+                        "state": "",
+                        "zipCode": "25-14"
+                    },
+                    {
+                        "_id": "67c4c4abf87ba067b4ec5c6b",
+                        "address": "Unknown Address in Amarillo",
+                        "city": "Amarillo",
+                        "listPrice": 155000,
+                        "pendingDate": "2025-03-02T20:50:51.129Z",
+                        "state": "",
+                        "zipCode": "25-65"
+                    },
+                    {
+                        "_id": "67c4c4abf87ba067b4ec5c6c",
+                        "address": "Unknown Address in Amarillo",
+                        "city": "Amarillo",
+                        "listPrice": 170000,
+                        "pendingDate": "2025-03-02T20:50:51.129Z",
+                        "state": "",
+                        "zipCode": "25-14"
+                    },
+                    {
+                        "_id": "67c4c4abf87ba067b4ec5c6d",
+                        "address": "Unknown Address in Amarillo",
+                        "city": "Amarillo",
+                        "listPrice": 135000,
+                        "pendingDate": "2025-03-02T20:50:51.129Z",
+                        "state": "",
+                        "zipCode": "24-62"
+                    },
+                    {
+                        "_id": "67c4c4abf87ba067b4ec5c6e",
+                        "address": "Unknown Address in Amarillo",
+                        "city": "Amarillo",
+                        "listPrice": 250625,
+                        "pendingDate": "2025-03-02T20:50:51.129Z",
+                        "state": "",
+                        "zipCode": "24-30"
+                    },
+                    {
+                        "_id": "67c4c4abf87ba067b4ec5c6f",
+                        "address": "Unknown Address in Amarillo",
+                        "city": "Amarillo",
+                        "listPrice": 195000,
+                        "pendingDate": "2025-03-02T20:50:51.129Z",
+                        "state": "",
+                        "zipCode": "24-96"
+                    },
+                    {
+                        "_id": "67c4c4abf87ba067b4ec5c70",
+                        "address": "Unknown Address in Amarillo",
+                        "city": "Amarillo",
+                        "listPrice": 162000,
+                        "pendingDate": "2025-03-02T20:50:51.129Z",
+                        "state": "",
+                        "zipCode": "24-10"
+                    },
+                    {
+                        "_id": "67c4c4abf87ba067b4ec5c71",
+                        "address": "Unknown Address in Amarillo",
+                        "city": "Amarillo",
+                        "listPrice": 184900,
+                        "pendingDate": "2025-03-02T20:50:51.129Z",
+                        "state": "",
+                        "zipCode": "24-10"
+                    },
+                    {
+                        "_id": "67c4c4abf87ba067b4ec5c72",
+                        "address": "Unknown Address in Amarillo",
+                        "city": "Amarillo",
+                        "listPrice": 439900,
+                        "pendingDate": "2025-03-02T20:50:51.129Z",
+                        "state": "",
+                        "zipCode": "24-93"
+                    },
+                    {
+                        "_id": "67c4c4abf87ba067b4ec5c73",
+                        "address": "Unknown Address in Amarillo",
+                        "city": "Amarillo",
+                        "listPrice": 399000,
+                        "pendingDate": "2025-03-02T20:50:51.129Z",
+                        "state": "",
+                        "zipCode": "24-84"
+                    },
+                    {
+                        "_id": "67c4c4abf87ba067b4ec5c74",
+                        "address": "Unknown Address in Amarillo",
+                        "city": "Amarillo",
+                        "listPrice": 180000,
+                        "pendingDate": "2025-03-02T20:50:51.129Z",
+                        "state": "",
+                        "zipCode": "25-82"
+                    },
+                    {
+                        "_id": "67c4c4abf87ba067b4ec5c75",
+                        "address": "Unknown Address in Amarillo",
+                        "city": "Amarillo",
+                        "listPrice": 439000,
+                        "pendingDate": "2025-03-02T20:50:51.129Z",
+                        "state": "",
+                        "zipCode": "25-16"
+                    },
+                    {
+                        "_id": "67c4c4abf87ba067b4ec5c76",
+                        "address": "Unknown Address in Amarillo",
+                        "city": "Amarillo",
+                        "listPrice": 271148,
+                        "pendingDate": "2025-03-02T20:50:51.129Z",
+                        "state": "",
+                        "zipCode": "24-74"
+                    },
+                    {
+                        "_id": "67c4c4abf87ba067b4ec5c77",
+                        "address": "Unknown Address in Amarillo",
+                        "city": "Amarillo",
+                        "listPrice": 487000,
+                        "pendingDate": "2025-03-02T20:50:51.129Z",
+                        "state": "",
+                        "zipCode": "25-13"
+                    },
+                    {
+                        "_id": "67c4c4abf87ba067b4ec5c78",
+                        "address": "Unknown Address in Amarillo",
+                        "city": "Amarillo",
+                        "listPrice": 750000,
+                        "pendingDate": "2025-03-02T20:50:51.129Z",
+                        "state": "",
+                        "zipCode": "25-64"
+                    },
+                    {
+                        "_id": "67c4c4abf87ba067b4ec5c79",
+                        "address": "Unknown Address in Amarillo",
+                        "city": "Amarillo",
+                        "listPrice": 215000,
+                        "pendingDate": "2025-03-02T20:50:51.129Z",
+                        "state": "",
+                        "zipCode": "25-31"
+                    },
+                    {
+                        "_id": "67c4c4abf87ba067b4ec5c7a",
+                        "address": "Unknown Address in Amarillo",
+                        "city": "Amarillo",
+                        "listPrice": 239000,
+                        "pendingDate": "2025-03-02T20:50:51.129Z",
+                        "state": "",
+                        "zipCode": "25-44"
+                    },
+                    {
+                        "_id": "67c4c4abf87ba067b4ec5c7b",
+                        "address": "Unknown Address in Amarillo",
+                        "city": "Amarillo",
+                        "listPrice": 194900,
+                        "pendingDate": "2025-03-02T20:50:51.129Z",
+                        "state": "",
+                        "zipCode": "24-79"
+                    },
+                    {
+                        "_id": "67c4c4abf87ba067b4ec5c7c",
+                        "address": "Unknown Address in Amarillo",
+                        "city": "Amarillo",
+                        "listPrice": 268000,
+                        "pendingDate": "2025-03-02T20:50:51.129Z",
+                        "state": "",
+                        "zipCode": "25-15"
+                    },
+                    {
+                        "_id": "67c4c4abf87ba067b4ec5c7d",
+                        "address": "Unknown Address in Amarillo",
+                        "city": "Amarillo",
+                        "listPrice": 270000,
+                        "pendingDate": "2025-03-02T20:50:51.129Z",
+                        "state": "",
+                        "zipCode": "25-13"
+                    },
+                    {
+                        "_id": "67c4c4abf87ba067b4ec5c7e",
+                        "address": "Unknown Address in Amarillo",
+                        "city": "Amarillo",
+                        "listPrice": 210000,
+                        "pendingDate": "2025-03-02T20:50:51.129Z",
+                        "state": "",
+                        "zipCode": "25-34"
+                    },
+                    {
+                        "_id": "67c4c4abf87ba067b4ec5c7f",
+                        "address": "Unknown Address in Amarillo",
+                        "city": "Amarillo",
+                        "listPrice": 218500,
+                        "pendingDate": "2025-03-02T20:50:51.129Z",
+                        "state": "",
+                        "zipCode": "24-84"
+                    },
+                    {
+                        "_id": "67c4c4abf87ba067b4ec5c80",
+                        "address": "Unknown Address in Amarillo",
+                        "city": "Amarillo",
+                        "listPrice": 259000,
+                        "pendingDate": "2025-03-02T20:50:51.129Z",
+                        "state": "",
+                        "zipCode": "24-87"
+                    },
+                    {
+                        "_id": "67c4c4abf87ba067b4ec5c81",
+                        "address": "Unknown Address in Amarillo",
+                        "city": "Amarillo",
+                        "listPrice": 189000,
+                        "pendingDate": "2025-03-02T20:50:51.129Z",
+                        "state": "",
+                        "zipCode": "24-94"
+                    },
+                    {
+                        "_id": "67c4c4abf87ba067b4ec5c82",
+                        "address": "Unknown Address in Amarillo",
+                        "city": "Amarillo",
+                        "listPrice": 259000,
+                        "pendingDate": "2025-03-02T20:50:51.129Z",
+                        "state": "",
+                        "zipCode": "25-13"
+                    },
+                    {
+                        "_id": "67c4c4abf87ba067b4ec5c83",
+                        "address": "Unknown Address in Amarillo",
+                        "city": "Amarillo",
+                        "listPrice": 108500,
+                        "pendingDate": "2025-03-02T20:50:51.129Z",
+                        "state": "",
+                        "zipCode": "24-10"
+                    },
+                    {
+                        "_id": "67c4c4abf87ba067b4ec5c84",
+                        "address": "Unknown Address in Amarillo",
+                        "city": "Amarillo",
+                        "listPrice": 98000,
+                        "pendingDate": "2025-03-02T20:50:51.129Z",
+                        "state": "",
+                        "zipCode": "25-47"
+                    },
+                    {
+                        "_id": "67c4c4abf87ba067b4ec5c85",
+                        "address": "Unknown Address in Amarillo",
+                        "city": "Amarillo",
+                        "listPrice": 187999,
+                        "pendingDate": "2025-03-02T20:50:51.129Z",
+                        "state": "",
+                        "zipCode": "24-72"
+                    },
+                    {
+                        "_id": "67c4c4abf87ba067b4ec5c86",
+                        "address": "Unknown Address in Amarillo",
+                        "city": "Amarillo",
+                        "listPrice": 159900,
+                        "pendingDate": "2025-03-02T20:50:51.129Z",
+                        "state": "",
+                        "zipCode": "24-10"
+                    },
+                    {
+                        "_id": "67c4c4abf87ba067b4ec5c87",
+                        "address": "Unknown Address in Amarillo",
+                        "city": "Amarillo",
+                        "listPrice": 275000,
+                        "pendingDate": "2025-03-02T20:50:51.129Z",
+                        "state": "",
+                        "zipCode": "25-25"
+                    },
+                    {
+                        "_id": "67c4c4abf87ba067b4ec5c88",
+                        "address": "Unknown Address in Amarillo",
+                        "city": "Amarillo",
+                        "listPrice": 710000,
+                        "pendingDate": "2025-03-02T20:50:51.129Z",
+                        "state": "",
+                        "zipCode": "24-70"
+                    },
+                    {
+                        "_id": "67c4c4abf87ba067b4ec5c89",
+                        "address": "Unknown Address in Amarillo",
+                        "city": "Amarillo",
+                        "listPrice": 150000,
+                        "pendingDate": "2025-03-02T20:50:51.129Z",
+                        "state": "",
+                        "zipCode": "25-96"
+                    },
+                    {
+                        "_id": "67c4c4abf87ba067b4ec5c8a",
+                        "address": "Unknown Address in Amarillo",
+                        "city": "Amarillo",
+                        "listPrice": 525000,
+                        "pendingDate": "2025-03-02T20:50:51.129Z",
+                        "state": "",
+                        "zipCode": "24-10"
+                    },
+                    {
+                        "_id": "67c4c4abf87ba067b4ec5c8b",
+                        "address": "Unknown Address in Amarillo",
+                        "city": "Amarillo",
+                        "listPrice": 249700,
+                        "pendingDate": "2025-03-02T20:50:51.129Z",
+                        "state": "",
+                        "zipCode": "24-43"
+                    },
+                    {
+                        "_id": "67c4c4abf87ba067b4ec5c8c",
+                        "address": "Unknown Address in Amarillo",
+                        "city": "Amarillo",
+                        "listPrice": 525000,
+                        "pendingDate": "2025-03-02T20:50:51.129Z",
+                        "state": "",
+                        "zipCode": "24-10"
+                    },
+                    {
+                        "_id": "67c4c4abf87ba067b4ec5c8d",
+                        "address": "Unknown Address in Amarillo",
+                        "city": "Amarillo",
+                        "listPrice": 239900,
+                        "pendingDate": "2025-03-02T20:50:51.129Z",
+                        "state": "",
+                        "zipCode": "24-70"
+                    },
+                    {
+                        "_id": "67c4c4abf87ba067b4ec5c8e",
+                        "address": "Unknown Address in Amarillo",
+                        "city": "Amarillo",
+                        "listPrice": 215000,
+                        "pendingDate": "2025-03-02T20:50:51.129Z",
+                        "state": "",
+                        "zipCode": "24-90"
+                    },
+                    {
+                        "_id": "67c4c4abf87ba067b4ec5c8f",
+                        "address": "Unknown Address in Amarillo",
+                        "city": "Amarillo",
+                        "listPrice": 699000,
+                        "pendingDate": "2025-03-02T20:50:51.129Z",
+                        "state": "",
+                        "zipCode": "24-10"
+                    },
+                    {
+                        "_id": "67c4c4abf87ba067b4ec5c90",
+                        "address": "Unknown Address in Amarillo",
+                        "city": "Amarillo",
+                        "listPrice": 249331,
+                        "pendingDate": "2025-03-02T20:50:51.129Z",
+                        "state": "",
+                        "zipCode": "25-12"
+                    },
+                    {
+                        "_id": "67c4c4abf87ba067b4ec5c91",
+                        "address": "Unknown Address in Amarillo",
+                        "city": "Amarillo",
+                        "listPrice": 419000,
+                        "pendingDate": "2025-03-02T20:50:51.129Z",
+                        "state": "",
+                        "zipCode": "25-35"
+                    },
+                    {
+                        "_id": "67c4c4abf87ba067b4ec5c92",
+                        "address": "Unknown Address in Amarillo",
+                        "city": "Amarillo",
+                        "listPrice": 270000,
+                        "pendingDate": "2025-03-02T20:50:51.129Z",
+                        "state": "",
+                        "zipCode": "24-94"
+                    },
+                    {
+                        "_id": "67c4c4abf87ba067b4ec5c93",
+                        "address": "Unknown Address in Amarillo",
+                        "city": "Amarillo",
+                        "listPrice": 118000,
+                        "pendingDate": "2025-03-02T20:50:51.129Z",
+                        "state": "",
+                        "zipCode": "24-73"
+                    },
+                    {
+                        "_id": "67c4c4abf87ba067b4ec5c94",
+                        "address": "Unknown Address in Amarillo",
+                        "city": "Amarillo",
+                        "listPrice": 267000,
+                        "pendingDate": "2025-03-02T20:50:51.129Z",
+                        "state": "",
+                        "zipCode": "24-91"
+                    },
+                    {
+                        "_id": "67c4c4abf87ba067b4ec5c95",
+                        "address": "Unknown Address in Amarillo",
+                        "city": "Amarillo",
+                        "listPrice": 543865,
+                        "pendingDate": "2025-03-02T20:50:51.129Z",
+                        "state": "",
+                        "zipCode": "25-29"
+                    },
+                    {
+                        "_id": "67c4c4abf87ba067b4ec5c96",
+                        "address": "Unknown Address in Amarillo",
+                        "city": "Amarillo",
+                        "listPrice": 399000,
+                        "pendingDate": "2025-03-02T20:50:51.129Z",
+                        "state": "",
+                        "zipCode": "24-10"
+                    },
+                    {
+                        "_id": "67c4c4abf87ba067b4ec5c97",
+                        "address": "Unknown Address in Amarillo",
+                        "city": "Amarillo",
+                        "listPrice": 1379000,
+                        "pendingDate": "2025-03-02T20:50:51.129Z",
+                        "state": "",
+                        "zipCode": "23-91"
+                    },
+                    {
+                        "_id": "67c4c4abf87ba067b4ec5c98",
+                        "address": "Unknown Address in Amarillo",
+                        "city": "Amarillo",
+                        "listPrice": 495000,
+                        "pendingDate": "2025-03-02T20:50:51.129Z",
+                        "state": "",
+                        "zipCode": "24-69"
+                    },
+                    {
+                        "_id": "67c4c4abf87ba067b4ec5c99",
+                        "address": "Unknown Address in Amarillo",
+                        "city": "Amarillo",
+                        "listPrice": 244900,
+                        "pendingDate": "2025-03-02T20:50:51.129Z",
+                        "state": "",
+                        "zipCode": "24-73"
+                    },
+                    {
+                        "_id": "67c4c4abf87ba067b4ec5c9a",
+                        "address": "Unknown Address in Amarillo",
+                        "city": "Amarillo",
+                        "listPrice": 125000,
+                        "pendingDate": "2025-03-02T20:50:51.129Z",
+                        "state": "",
+                        "zipCode": "25-33"
+                    },
+                    {
+                        "_id": "67c4c4abf87ba067b4ec5c9b",
+                        "address": "Unknown Address in Amarillo",
+                        "city": "Amarillo",
+                        "listPrice": 299900,
+                        "pendingDate": "2025-03-02T20:50:51.129Z",
+                        "state": "",
+                        "zipCode": "24-62"
+                    },
+                    {
+                        "_id": "67c4c4abf87ba067b4ec5c9c",
+                        "address": "Unknown Address in Amarillo",
+                        "city": "Amarillo",
+                        "listPrice": 389000,
+                        "pendingDate": "2025-03-02T20:50:51.129Z",
+                        "state": "",
+                        "zipCode": "24-97"
+                    },
+                    {
+                        "_id": "67c4c4abf87ba067b4ec5c9d",
+                        "address": "Unknown Address in Amarillo",
+                        "city": "Amarillo",
+                        "listPrice": 383921,
+                        "pendingDate": "2025-03-02T20:50:51.129Z",
+                        "state": "",
+                        "zipCode": "25-13"
+                    },
+                    {
+                        "_id": "67c4c4abf87ba067b4ec5c9e",
+                        "address": "Unknown Address in Amarillo",
+                        "city": "Amarillo",
+                        "listPrice": 405571,
+                        "pendingDate": "2025-03-02T20:50:51.129Z",
+                        "state": "",
+                        "zipCode": "25-12"
+                    },
+                    {
+                        "_id": "67c4c4abf87ba067b4ec5c9f",
+                        "address": "Unknown Address in Amarillo",
+                        "city": "Amarillo",
+                        "listPrice": 571899,
+                        "pendingDate": "2025-03-02T20:50:51.129Z",
+                        "state": "",
+                        "zipCode": "24-10"
+                    },
+                    {
+                        "_id": "67c4c4abf87ba067b4ec5ca0",
+                        "address": "Unknown Address in Amarillo",
+                        "city": "Amarillo",
+                        "listPrice": 218500,
+                        "pendingDate": "2025-03-02T20:50:51.129Z",
+                        "state": "",
+                        "zipCode": "24-10"
+                    },
+                    {
+                        "_id": "67c4c4abf87ba067b4ec5ca1",
+                        "address": "Unknown Address in Amarillo",
+                        "city": "Amarillo",
+                        "listPrice": 305000,
+                        "pendingDate": "2025-03-02T20:50:51.129Z",
+                        "state": "",
+                        "zipCode": "24-56"
+                    }
+                ],
+                "phone": "806-206-1695",
+                "source": "spark",
+                "sourceId": "20000208150207820453000000",
+                "updatedAt": "2025-03-02T20:50:51.167Z"
+            }
+        ],
+        "sampleListings": [
+            {
+                "__v": 0,
+                "_id": "67c4c4ae638435eaf91e2098",
+                "association": "aar",
+                "city": "Amarillo",
+                "isArchived": false,
+                "lifecycleStatus": "active",
+                "listAgentKey": "20000208150207820453000000",
+                "listPrice": 199000,
+                "listingKey": "25-2184",
+                "mlsStatus": "Active",
+                "photos": [
+                    {
+                        "_id": "67c4c4abf87ba067b4ec5ca3",
+                        "isPrimary": true,
+                        "uri": "https://cdn.resize.sparkplatform.com/amt/800x600/true/20250302204730625726000000-o.jpg"
+                    },
+                    {
+                        "_id": "67c4c4abf87ba067b4ec5ca4",
+                        "isPrimary": false,
+                        "uri": "https://cdn.resize.sparkplatform.com/amt/800x600/true/20250302204747578835000000-o.jpg"
+                    },
+                    {
+                        "_id": "67c4c4abf87ba067b4ec5ca5",
+                        "isPrimary": false,
+                        "uri": "https://cdn.resize.sparkplatform.com/amt/800x600/true/20250302204735031334000000-o.jpg"
+                    },
+                    {
+                        "_id": "67c4c4abf87ba067b4ec5ca6",
+                        "isPrimary": false,
+                        "uri": "https://cdn.resize.sparkplatform.com/amt/800x600/true/20250302204745437099000000-o.jpg"
+                    },
+                    {
+                        "_id": "67c4c4abf87ba067b4ec5ca7",
+                        "isPrimary": false,
+                        "uri": "https://cdn.resize.sparkplatform.com/amt/800x600/true/20250302204758176842000000-o.jpg"
+                    },
+                    {
+                        "_id": "67c4c4abf87ba067b4ec5ca8",
+                        "isPrimary": false,
+                        "uri": "https://cdn.resize.sparkplatform.com/amt/800x600/true/20250302204723799888000000-o.jpg"
+                    },
+                    {
+                        "_id": "67c4c4abf87ba067b4ec5ca9",
+                        "isPrimary": false,
+                        "uri": "https://cdn.resize.sparkplatform.com/amt/800x600/true/20250302204725977177000000-o.jpg"
+                    },
+                    {
+                        "_id": "67c4c4abf87ba067b4ec5caa",
+                        "isPrimary": false,
+                        "uri": "https://cdn.resize.sparkplatform.com/amt/800x600/true/20250302204733104903000000-o.jpg"
+                    },
+                    {
+                        "_id": "67c4c4abf87ba067b4ec5cab",
+                        "isPrimary": false,
+                        "uri": "https://cdn.resize.sparkplatform.com/amt/800x600/true/20250302204800310876000000-o.jpg"
+                    },
+                    {
+                        "_id": "67c4c4abf87ba067b4ec5cac",
+                        "isPrimary": false,
+                        "uri": "https://cdn.resize.sparkplatform.com/amt/800x600/true/20250302204737061236000000-o.jpg"
+                    },
+                    {
+                        "_id": "67c4c4abf87ba067b4ec5cad",
+                        "isPrimary": false,
+                        "uri": "https://cdn.resize.sparkplatform.com/amt/800x600/true/20250302204739188776000000-o.jpg"
+                    },
+                    {
+                        "_id": "67c4c4abf87ba067b4ec5cae",
+                        "isPrimary": false,
+                        "uri": "https://cdn.resize.sparkplatform.com/amt/800x600/true/20250302204741201905000000-o.jpg"
+                    },
+                    {
+                        "_id": "67c4c4abf87ba067b4ec5caf",
+                        "isPrimary": false,
+                        "uri": "https://cdn.resize.sparkplatform.com/amt/800x600/true/20250302204749760420000000-o.jpg"
+                    },
+                    {
+                        "_id": "67c4c4abf87ba067b4ec5cb0",
+                        "isPrimary": false,
+                        "uri": "https://cdn.resize.sparkplatform.com/amt/800x600/true/20250302204754025581000000-o.jpg"
+                    },
+                    {
+                        "_id": "67c4c4abf87ba067b4ec5cb1",
+                        "isPrimary": false,
+                        "uri": "https://cdn.resize.sparkplatform.com/amt/800x600/true/20250302204756110509000000-o.jpg"
+                    },
+                    {
+                        "_id": "67c4c4abf87ba067b4ec5cb2",
+                        "isPrimary": false,
+                        "uri": "https://cdn.resize.sparkplatform.com/amt/800x600/true/20250302204751811078000000-o.jpg"
+                    },
+                    {
+                        "_id": "67c4c4abf87ba067b4ec5cb3",
+                        "isPrimary": false,
+                        "uri": "https://cdn.resize.sparkplatform.com/amt/800x600/true/20250302204743411122000000-o.jpg"
+                    }
+                ],
+                "source": "spark",
+                "sourceId": "25-2184",
+                "standardFields": {
+                    "bathsTotal": 2,
+                    "bedsTotal": 3,
+                    "buildingAreaTotal": 0,
+                    "city": "Amarillo",
+                    "listOfficeName": null,
+                    "listPrice": 199000,
+                    "postalCode": "",
+                    "propertyType": "A",
+                    "standardStatus": "Active",
+                    "stateOrProvince": "",
+                    "yearBuilt": 2017
+                },
+                "stateOrProvince": "",
+                "statusHistory": []
+            },
+            {
+                "__v": 0,
+                "_id": "67c4c4ae638435eaf91e2099",
+                "association": "aar",
+                "city": "Claude",
+                "isArchived": false,
+                "lifecycleStatus": "active",
+                "listAgentKey": "listing-25-357",
+                "listPrice": 235000,
+                "listingKey": "25-357",
+                "mlsStatus": "Active",
+                "photos": [
+                    {
+                        "_id": "67c4c4abf87ba067b4ec5cb4",
+                        "isPrimary": true,
+                        "uri": "https://cdn.resize.sparkplatform.com/amt/800x600/true/20250110161159360820000000-o.jpg"
+                    },
+                    {
+                        "_id": "67c4c4abf87ba067b4ec5cb5",
+                        "isPrimary": false,
+                        "uri": "https://cdn.resize.sparkplatform.com/amt/800x600/true/20250110161202709615000000-o.jpg"
+                    },
+                    {
+                        "_id": "67c4c4abf87ba067b4ec5cb6",
+                        "isPrimary": false,
+                        "uri": "https://cdn.resize.sparkplatform.com/amt/800x600/true/20250110161221532623000000-o.jpg"
+                    },
+                    {
+                        "_id": "67c4c4abf87ba067b4ec5cb7",
+                        "isPrimary": false,
+                        "uri": "https://cdn.resize.sparkplatform.com/amt/800x600/true/20250110161217902522000000-o.jpg"
+                    },
+                    {
+                        "_id": "67c4c4abf87ba067b4ec5cb8",
+                        "isPrimary": false,
+                        "uri": "https://cdn.resize.sparkplatform.com/amt/800x600/true/20250110161155267416000000-o.jpg"
+                    },
+                    {
+                        "_id": "67c4c4abf87ba067b4ec5cb9",
+                        "isPrimary": false,
+                        "uri": "https://cdn.resize.sparkplatform.com/amt/800x600/true/20250110161213474634000000-o.jpg"
+                    },
+                    {
+                        "_id": "67c4c4abf87ba067b4ec5cba",
+                        "isPrimary": false,
+                        "uri": "https://cdn.resize.sparkplatform.com/amt/800x600/true/20250110161210444057000000-o.jpg"
+                    },
+                    {
+                        "_id": "67c4c4abf87ba067b4ec5cbb",
+                        "isPrimary": false,
+                        "uri": "https://cdn.resize.sparkplatform.com/amt/800x600/true/20250110161215737675000000-o.jpg"
+                    },
+                    {
+                        "_id": "67c4c4abf87ba067b4ec5cbc",
+                        "isPrimary": false,
+                        "uri": "https://cdn.resize.sparkplatform.com/amt/800x600/true/20250110161124282148000000-o.jpg"
+                    },
+                    {
+                        "_id": "67c4c4abf87ba067b4ec5cbd",
+                        "isPrimary": false,
+                        "uri": "https://cdn.resize.sparkplatform.com/amt/800x600/true/20250110161205583650000000-o.jpg"
+                    },
+                    {
+                        "_id": "67c4c4abf87ba067b4ec5cbe",
+                        "isPrimary": false,
+                        "uri": "https://cdn.resize.sparkplatform.com/amt/800x600/true/20250110161208013195000000-o.jpg"
+                    },
+                    {
+                        "_id": "67c4c4abf87ba067b4ec5cbf",
+                        "isPrimary": false,
+                        "uri": "https://cdn.resize.sparkplatform.com/amt/800x600/true/20250110161128838926000000-o.jpg"
+                    },
+                    {
+                        "_id": "67c4c4abf87ba067b4ec5cc0",
+                        "isPrimary": false,
+                        "uri": "https://cdn.resize.sparkplatform.com/amt/800x600/true/20250110161250814363000000-o.jpg"
+                    },
+                    {
+                        "_id": "67c4c4abf87ba067b4ec5cc1",
+                        "isPrimary": false,
+                        "uri": "https://cdn.resize.sparkplatform.com/amt/800x600/true/20250110161254999214000000-o.jpg"
+                    },
+                    {
+                        "_id": "67c4c4abf87ba067b4ec5cc2",
+                        "isPrimary": false,
+                        "uri": "https://cdn.resize.sparkplatform.com/amt/800x600/true/20250110161230153594000000-o.jpg"
+                    },
+                    {
+                        "_id": "67c4c4abf87ba067b4ec5cc3",
+                        "isPrimary": false,
+                        "uri": "https://cdn.resize.sparkplatform.com/amt/800x600/true/20250110161309397229000000-o.jpg"
+                    },
+                    {
+                        "_id": "67c4c4abf87ba067b4ec5cc4",
+                        "isPrimary": false,
+                        "uri": "https://cdn.resize.sparkplatform.com/amt/800x600/true/20250110161132640534000000-o.jpg"
+                    },
+                    {
+                        "_id": "67c4c4abf87ba067b4ec5cc5",
+                        "isPrimary": false,
+                        "uri": "https://cdn.resize.sparkplatform.com/amt/800x600/true/20250110161148721012000000-o.jpg"
+                    },
+                    {
+                        "_id": "67c4c4abf87ba067b4ec5cc6",
+                        "isPrimary": false,
+                        "uri": "https://cdn.resize.sparkplatform.com/amt/800x600/true/20250110162602709785000000-o.jpg"
+                    }
+                ],
+                "source": "spark",
+                "sourceId": "25-357",
+                "standardFields": {
+                    "bathsTotal": 2,
+                    "bedsTotal": 3,
+                    "buildingAreaTotal": 1620,
+                    "city": "Claude",
+                    "listOfficeName": null,
+                    "listPrice": 235000,
+                    "postalCode": "",
+                    "propertyType": "A",
+                    "standardStatus": "Active",
+                    "stateOrProvince": "",
+                    "yearBuilt": 2019
+                },
+                "stateOrProvince": "",
+                "statusHistory": []
+            }
+        ]
+    },
+    "stats": {
+        "activeListings": 1464,
+        "agentsWithActiveListings": 567,
+        "agentsWithPendingListings": 93,
+        "listingsWithNullAgentKey": 0,
+        "pendingTransactions": 227,
+        "totalAgents": 10,
+        "totalListings": 1691
+    },
+    "success": true
+}
