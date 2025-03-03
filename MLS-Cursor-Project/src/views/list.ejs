@@ -1,0 +1,201 @@
+                            <!DOCTYPE html>
+                            <html>
+                            <head>
+                                <meta charset="UTF-8">
+                                <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                                <link rel="preconnect" href="https://fonts.googleapis.com">
+                                <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+                                <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Poppins:wght@500;600;700&display=swap" rel="stylesheet">
+                                <link rel="stylesheet" href="/styles.css">
+                                <script>
+                                    function sortTable(field) {
+                                        const currentUrl = new URL(window.location.href);
+                                        const currentSort = currentUrl.searchParams.get('sortField');
+                                        const currentOrder = currentUrl.searchParams.get('sortOrder');
+
+                                        let newOrder = 'asc';
+                                        if (field === currentSort && currentOrder === 'asc') {
+                                            newOrder = 'desc';
+                                        }
+
+                                        currentUrl.searchParams.set('sortField', field);
+                                        currentUrl.searchParams.set('sortOrder', newOrder);
+                                        const query = currentUrl.searchParams.get('query');
+                                        if (query) {
+                                            currentUrl.searchParams.set('query', query);
+                                        }
+                                        window.location.href = currentUrl.toString();
+                                    }
+                                </script>
+                            </head>
+                            <body>
+                                <div class="layout-container">
+                                    <%- include('partials/menu') %>
+
+                                    <main class="main-content">
+                                        <div class="container">
+                                            <div class="header">
+                                                <div class="header-left">
+                                                    <h1>Lubbock MLS</h1>
+                                                    <span class="highlight">Pending Transaction Detail</span>
+                                                </div>
+                                            </div>
+
+                                            <div class="controls-container">
+                                                <div class="search-controls">
+                                                    <!-- Your existing search controls here -->
+                                                </div>
+                                                <a href="/download-csv" class="btn btn-primary download-btn">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="download-icon">
+                                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/>
+                                                    </svg>
+                                                    Download CSV
+                                                </a>
+                                            </div>
+
+                                            <style>
+                                            .controls-container {
+                                                display: flex;
+                                                justify-content: space-between;
+                                                align-items: center;
+                                                margin: 1.5rem 0;
+                                                padding: 1rem 0;
+                                                border-bottom: 1px solid #edf2f7;
+                                            }
+
+                                            .download-btn {
+                                                display: inline-flex;
+                                                align-items: center;
+                                                gap: 8px;
+                                                padding: 0.5rem 1rem;
+                                                background-color: #2563eb;
+                                                color: white;
+                                                border-radius: 0.375rem;
+                                                font-size: 0.875rem;
+                                                font-weight: 500;
+                                                text-decoration: none;
+                                                transition: all 0.2s ease;
+                                                border: 1px solid transparent;
+                                                box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+                                            }
+
+                                            .download-btn:hover {
+                                                background-color: #1d4ed8;
+                                                transform: translateY(-1px);
+                                                box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+                                            }
+
+                                            .download-btn:active {
+                                                transform: translateY(0);
+                                                box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+                                            }
+
+                                            .download-icon {
+                                                width: 16px;
+                                                height: 16px;
+                                                stroke-width: 2;
+                                            }
+
+                                            /* Optional: Add loading state */
+                                            .download-btn.loading {
+                                                opacity: 0.7;
+                                                cursor: not-allowed;
+                                                pointer-events: none;
+                                            }
+                                            </style>
+
+                                            <script>
+                                            // Optional: Add loading state when downloading
+                                            document.querySelector('.download-btn').addEventListener('click', function(e) {
+                                                this.classList.add('loading');
+                                                setTimeout(() => {
+                                                    this.classList.remove('loading');
+                                                }, 2000);
+                                            });
+                                            </script>
+
+                                            <div class="data-table-container">
+                                                <table class="data-table">
+                                                    <thead>
+                                                        <tr>
+                                                            <th onclick="sortTable('name')" class="sortable <%= locals.sortField === 'name' ? 'sorted-' + locals.sortOrder : '' %>">
+                                                                Agent Name
+                                                                <span class="sort-icon">↕</span>
+                                                            </th>
+                                                            <th onclick="sortTable('phone')" class="sortable <%= locals.sortField === 'phone' ? 'sorted-' + locals.sortOrder : '' %>">
+                                                                Phone Number
+                                                                <span class="sort-icon">↕</span>
+                                                            </th>
+                                                            <th>Contact Info</th>
+                                                            <th>Properties</th>
+                                                            <th onclick="sortTable('lastSync')" class="sortable <%= locals.sortField === 'lastSync' ? 'sorted-' + locals.sortOrder : '' %>">
+                                                                Last Sync
+                                                                <span class="sort-icon">↕</span>
+                                                            </th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <% if (locals.agents && locals.agents.length > 0) { %>
+                                                            <% agents.forEach(agent => { %>
+                                                                <tr>
+                                                                    <td><%= (agent.name?.full || agent.fullName || 'Unknown Agent') %></td>
+                                                                    <td><a href="tel:<%= agent.phone %>" class="contact-link"><%= agent.phone %></a></td>
+                                                                    <td>
+                                                                        <a href="mailto:<%= agent.email %>" class="contact-link"><%= agent.email %></a><br>
+                                                                        <a href="tel:<%= agent.phone %>" class="contact-link"><%= agent.phone %></a>
+                                                                    </td>
+                                                                    <td>
+                                                                        <% if (agent.listings && agent.listings.length > 0) { %>
+                                                                            <div class="property-list">
+                                                                                <% agent.listings.forEach(listing => { %>
+                                                                                    <div class="property-item">
+                                                                                        <%= `${listing.address.street}, ${listing.address.city}, ${listing.address.state} ${listing.address.zip}` %>
+                                                                                        <span class="property-price">$<%= listing.listPrice.toLocaleString() %></span>
+                                                                                    </div>
+                                                                                <% }); %>
+                                                                            </div>
+                                                                        <% } %>
+                                                                    </td>
+                                                                    <td><%= DateService.formatDateTime(agent.lastSync) || 'Never' %></td>
+                                                                </tr>
+                                                            <% }); %>
+                                                        <% } else { %>
+                                                            <tr>
+                                                                <td colspan="5" class="no-results">No agents found with pending listings.</td>
+                                                            </tr>
+                                                        <% } %>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+
+                                            <div class="pagination-container">
+                                                <div class="results-per-page">
+                                                    <select class="sort-dropdown" id="limit" name="limit" onchange="changePage(this.value)">
+                                                        <option value="12" <%= locals.limit == 12 ? 'selected' : '' %>>12 per page</option>
+                                                        <option value="24" <%= locals.limit == 24 ? 'selected' : '' %>>24 per page</option>
+                                                        <option value="60" <%= locals.limit == 60 ? 'selected' : '' %>>60 per page</option>
+                                                    </select>
+                                                </div>
+
+                                                <div class="pagination">
+                                                    <% if (pagination.hasPrev) { %>
+                                                        <a href="?page=<%= pagination.currentPage - 1 %>&query=<%= query %>&sortField=lastSync&sortOrder=<%= sortOrder %>&limit=<%= limit %>">&laquo; Previous</a>
+                                                    <% } %>
+
+                                                    <span class="page-info">
+                                                        Page <%= pagination.currentPage %> of <%= pagination.pages %>
+                                                        (Showing <%= Math.min(((pagination.currentPage - 1) * limit) + 1, pagination.total) %> - 
+                                                        <%= Math.min(pagination.currentPage * limit, pagination.total) %> 
+                                                        of <%= pagination.total || 0 %> total)
+                                                    </span>
+
+                                                    <% if (pagination.hasNext) { %>
+                                                        <a href="?page=<%= pagination.currentPage + 1 %>&query=<%= query %>&sortField=lastSync&sortOrder=<%= sortOrder %>&limit=<%= limit %>">Next &raquo;</a>
+                                                    <% } %>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </main>
+                                </div>
+                            </body>
+                            </html> 

@@ -1,0 +1,27 @@
+.marker {
+  background-color: #ff4444;
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  cursor: pointer;
+  border: 2px solid white;
+  box-shadow: 0 0 4px rgba(0,0,0,0.3);
+}
+
+.mapboxgl-popup {
+  max-width: 300px;
+}
+
+.mapboxgl-popup-content {
+  padding: 15px;
+}
+
+.mapboxgl-popup-content h3 {
+  margin: 0 0 10px 0;
+  color: #333;
+}
+
+.mapboxgl-popup-content p {
+  margin: 5px 0;
+  color: #666;
+}

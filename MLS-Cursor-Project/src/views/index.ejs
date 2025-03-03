@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Poppins:wght@500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/styles.css">
+    <script>
+        function formatCentralTime(dateString) {
+            const date = new Date(dateString);
+            return date.toLocaleDateString('en-US', {
+                month: 'short',
+                day: 'numeric',
+                year: 'numeric',
+            }) + ' at ' + 
+            date.toLocaleTimeString('en-US', {
+                hour: 'numeric',
+                minute: '2-digit',
+                hour12: true
+            });
+        }
+
+        let searchTimeout;
+
+        function debounceSearch() {
+            clearTimeout(searchTimeout);
+            searchTimeout = setTimeout(() => {
+                search();
+            }, 300);
+        }
+
+        function search() {
+            const query = document.getElementById('searchInput').value;
+            const sortField = document.getElementById('sortField').value;
+            const currentUrl = new URL(window.location.href);
+            const searchParams = new URLSearchParams(currentUrl.search);
+
+            if (query) {
+                searchParams.set('query', query);
+            } else {
+                searchParams.delete('query');
+            }
+
+            searchParams.set('sortField', sortField);
+            searchParams.set('page', '1');
+
+            window.location.href = `${currentUrl.pathname}?${searchParams.toString()}`;
+        }
+
+        function updateSort() {
+            search();
+        }
+
+        function refreshDashboard() {
+            window.location.reload();
+        }
+
+        function changePage(newLimit) {
+            const currentUrl = new URL(window.location.href);
+            currentUrl.searchParams.set('limit', newLimit);
+            currentUrl.searchParams.set('page', '1');
+            window.location.href = currentUrl.toString();
+        }
+
+        function toggleMenu() {
+            const sideMenu = document.getElementById('sideMenu');
+            const menuToggle = document.querySelector('.menu-toggle');
+            const mainContent = document.getElementById('mainContent');
+
+            sideMenu.classList.toggle('collapsed');
+            menuToggle.classList.toggle('collapsed');
+            mainContent.classList.toggle('menu-collapsed');
+        }
+
+        document.querySelectorAll('.menu-item').forEach(item => {
+            item.addEventListener('click', (e) => {
+                const sideMenu = document.getElementById('sideMenu');
+                if (sideMenu.classList.contains('collapsed')) {
+                    e.preventDefault();
+                    toggleMenu();
+                }
+            });
+        });
+    </script>
+</head>
+<body>
+    <div class="layout-container">
+        <%- include('partials/menu') %>
+
+        <button class="menu-toggle" onclick="toggleMenu()">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="menu-icon">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
+            </svg>
+        </button>
+
+        <main class="main-content">
+            <div class="container">
+                <div class="header">
+                    <h1>Lubbock MLS</h1>
+                    <span class="highlight">Pending Transactions</span>
+                </div>
+
+                <div class="search-controls">
+                    <div class="unified-search">
+                        <select class="sort-dropdown" id="dateRange" name="dateRange">
+                            <option value="24h" <%= locals.dateRange === '24h' ? 'selected' : '' %>>Last 24 Hours</option>
+                            <option value="3d" <%= locals.dateRange === '3d' ? 'selected' : '' %>>Last 3 Days</option>
+                            <option value="5d" <%= locals.dateRange === '5d' ? 'selected' : '' %>>Last 5 Days</option>
+                            <option value="7d" <%= locals.dateRange === '7d' ? 'selected' : '' %>>Last 7 Days</option>
+                            <option value="10d" <%= locals.dateRange === '10d' ? 'selected' : '' %>>Last 10 Days</option>
+                            <option value="1m" <%= locals.dateRange === '1m' ? 'selected' : '' %>>This Month</option>
+                            <option value="lastMonth" <%= locals.dateRange === 'lastMonth' ? 'selected' : '' %>>Last Month</option>
+                            <option value="custom" <%= locals.dateRange === 'custom' ? 'selected' : '' %>>Custom Range</option>
+                        </select>
+                        <input type="text" placeholder="Search by name, MLS ID, or address..." value="<%= locals.query || '' %>">
+                    </div>
+                </div>
+
+                <div class="stats">
+                    <div class="stat-card">
+                        <h3>Total Agents</h3>
+                        <p><%= stats.totalAgents %></p>
+                    </div>
+                    <div class="stat-card">
+                        <h3>Today's Syncs</h3>
+                        <p><%= stats.todaySyncs %></p>
+                    </div>
+                    <div class="stat-card">
+                        <h3>Last Sync</h3>
+                        <p><script>document.write(formatCentralTime('<%= stats.lastSyncTime %>'))</script></p>
+                    </div>
+                </div>
+
+                <div class="agent-cards">
+                    <% if (locals.agents && locals.agents.length > 0) { %>
+                        <% agents.forEach(agent => { %>
+                            <div class="agent-card">
+                                <div class="agent-card-header">
+                                    <h3><%= agent.name.full || agent.fullName %></h3>
+                                    <p class="mls-id">MLS ID: <%= agent.mlsId %></p>
+                                </div>
+                                <div class="agent-card-body">
+                                    <div class="contact-info">
+                                        <p>
+                                            <span class="contact-label">Email:</span>
+                                            <a href="mailto:<%= agent.email %>" class="contact-link"><%= agent.email %></a>
+                                        </p>
+                                        <p>
+                                            <span class="contact-label">Phone:</span>
+                                            <a href="tel:<%= agent.phone %>" class="contact-link"><%= agent.phone %></a>
+                                        </p>
+                                    </div>
+
+                                    <% if (agent.listings && agent.listings.length > 0) { %>
+                                        <% agent.listings.forEach(listing => { %>
+                                            <div class="property-info">
+                                                <p><strong>Property:</strong> 
+                                                    <%= `${listing.address.street}, 
+                                                        ${listing.address.city}, 
+                                                        ${listing.address.state} 
+                                                        ${listing.address.zip}` %>
+                                                </p>
+                                                <p class="property-price">
+                                                    <strong>List Price:</strong> 
+                                                    $<%= listing.listPrice.toLocaleString() %>
+                                                </p>
+                                            </div>
+                                        <% }); %>
+                                    <% } %>
+
+                                    <div class="last-updated">
+                                        Last updated: <%= new Date(agent.lastUpdated).toLocaleString() %>
+                                    </div>
+                                </div>
+                            </div>
+                        <% }); %>
+                    <% } else { %>
+                        <p>No agents found with pending listings.</p>
+                    <% } %>
+                </div>
+
+                <div class="pagination-container">
+                    <div class="results-per-page">
+                        <select class="sort-dropdown" id="limit" name="limit" onchange="changePage(this.value)">
+                            <option value="12" <%= locals.limit == 12 ? 'selected' : '' %>>12 per page</option>
+                            <option value="24" <%= locals.limit == 24 ? 'selected' : '' %>>24 per page</option>
+                            <option value="60" <%= locals.limit == 60 ? 'selected' : '' %>>60 per page</option>
+                        </select>
+                    </div>
+
+                    <div class="pagination">
+                        <% if (locals.pagination?.hasPrev) { %>
+                            <a href="?page=<%= pagination.current - 1 %>&query=<%= locals.query %>&sortField=<%= locals.sortField %>&limit=<%= locals.limit %>">&laquo; Previous</a>
+                        <% } %>
+
+                        <span class="page-info">
+                            Page <%= pagination.current %> of <%= pagination.pages || 1 %> 
+                            (Showing <%= Math.min(((pagination.current - 1) * locals.limit) + 1, pagination.total) %> - 
+                            <%= Math.min(pagination.current * locals.limit, pagination.total) %> 
+                            of <%= pagination.total || 0 %> total)
+                        </span>
+
+                        <% if (locals.pagination?.hasNext) { %>
+                            <a href="?page=<%= pagination.current + 1 %>&query=<%= locals.query %>&sortField=<%= localds.sortField %>&limit=<%= locals.limit %>">Next &raquo;</a>
+                        <% } %>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</body>
+</html>

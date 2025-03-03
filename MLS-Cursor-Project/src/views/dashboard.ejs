@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title><%= title %></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+    <div class="header">
+        <h1>Lubbock MLS</h1>
+        <span class="highlight">Dashboard</span>
+    </div>
+
+    <div class="stats">
+        <div class="stat-card">
+            <h3>Total Agents</h3>
+            <p><%= stats.totalAgents %></p>
+        </div>
+        <div class="stat-card">
+            <h3>Total Pending Transactions</h3>
+            <p><%= stats.todaySyncs %></p>
+        </div>
+        <div class="stat-card">
+            <h3>Last Sync</h3>
+            <p><%= new Date(stats.lastSyncTime).toLocaleString('en-US', {
+                month: 'short',
+                day: 'numeric',
+                year: 'numeric',
+                hour: 'numeric',
+                minute: 'numeric',
+                timeZone: 'America/Chicago',
+                hour12: true
+            }) %></p>
+        </div>
+    </div>
+</body>
+</html> 

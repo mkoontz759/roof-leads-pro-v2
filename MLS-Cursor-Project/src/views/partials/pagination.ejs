@@ -1,0 +1,26 @@
+<div class="pagination-container">
+    <div class="results-per-page">
+        <select class="sort-dropdown" id="limit" name="limit" onchange="changePage(this.value)">
+            <option value="12" <%= locals.limit == 12 ? 'selected' : '' %>>12 per page</option>
+            <option value="24" <%= locals.limit == 24 ? 'selected' : '' %>>24 per page</option>
+            <option value="60" <%= locals.limit == 60 ? 'selected' : '' %>>60 per page</option>
+        </select>
+    </div>
+
+    <div class="pagination">
+        <% if (pagination.hasPrev) { %>
+            <a href="?page=<%= pagination.currentPage - 1 %>&dateFilter=<%= dateFilter || 'all' %>&priceFilter=<%= priceFilter || 'all' %>&zipCodes=<%= zipCodes || '' %>&limit=<%= locals.limit %>">&laquo; Previous</a>
+        <% } %>
+
+        <span class="page-info">
+            Page <%= pagination.currentPage %> of <%= pagination.pages %>
+            (Showing <%= Math.min(((pagination.currentPage - 1) * limit) + 1, pagination.total) %> - 
+            <%= Math.min(pagination.currentPage * limit, pagination.total) %> 
+            of <%= pagination.total || 0 %> total)
+        </span>
+
+        <% if (pagination.hasNext) { %>
+            <a href="?page=<%= pagination.currentPage + 1 %>&dateFilter=<%= dateFilter || 'all' %>&priceFilter=<%= priceFilter || 'all' %>&zipCodes=<%= zipCodes || '' %>&limit=<%= locals.limit %>">Next &raquo;</a>
+        <% } %>
+    </div>
+</div> 
