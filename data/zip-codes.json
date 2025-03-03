@@ -1,0 +1,27 @@
+[
+  {
+    "code": "90210",
+    "city": "Beverly Hills",
+    "state": "CA"
+  },
+  {
+    "code": "10001",
+    "city": "New York",
+    "state": "NY"
+  },
+  {
+    "code": "60601",
+    "city": "Chicago",
+    "state": "IL"
+  },
+  {
+    "code": "33139",
+    "city": "Miami Beach",
+    "state": "FL"
+  },
+  {
+    "code": "94105",
+    "city": "San Francisco",
+    "state": "CA"
+  }
+] 

@@ -1,0 +1,8 @@
+{
+  "crons": [
+    {
+      "path": "/api/cron/sync?key=7cf68e2b161411936c2836fb622ae8e5a6cd529c05123ffc8c1a071b1d9fb4d6",
+      "schedule": "0 * * * *"
+    }
+  ]
+} 
