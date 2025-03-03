@@ -3,6 +3,7 @@ const logger = require('./LoggerService');
 const qs = require('querystring');
 const Agent = require('../models/Agent');
 const Listing = require('../models/Listing');
+const DatabaseService = require('./DatabaseService');
 
 class MLSService {
   constructor(logger) {
@@ -14,10 +15,11 @@ class MLSService {
     this.authUrl = 'https://retsidentityapi.raprets.com/LUBB/oauth/token';
     this.clientId = process.env.MLS_CLIENT_ID || 'lab_lbk';
     this.clientSecret = process.env.MLS_CLIENT_SECRET;
-    this.username = process.env.MLS_USERNAME || 'lablbk';
+    this.username = process.env.MLS_ID || 'lablbk';
     this.password = process.env.MLS_PASSWORD;
     this.authToken = null;
     this.tokenExpires = null;
+    this.databaseService = new DatabaseService();
   }
 
   async authenticate() {
@@ -257,41 +259,9 @@ class MLSService {
         }));
         const agentResult = await Agent.bulkWrite(agentOps);
 
-        // Track new listings
-        let newListingsCount = 0;
-
-        // Store listings and check for new matches
+        // Use DatabaseService to store listings with geocoding
         this.logger.info(`Storing ${data.listings.length} listings...`);
-        for (const listing of data.listings) {
-            // Check if this listing already exists
-            const existingListing = await Listing.findOne({ listingKey: listing.listingKey });
-
-            if (!existingListing) {
-                newListingsCount++;
-                // New listing - check if we have the agent
-                const agent = await Agent.findOne({ memberKey: listing.listAgentKey });
-
-                if (agent) {
-                    // New match found! Send to webhook
-                    this.logger.info('New agent-listing match found:', {
-                        agent: agent.fullName,
-                        listing: listing.address
-                    });
-
-                    await this.sendToLeadConnector({
-                        ...agent.toObject(),
-                        listingInfo: listing
-                    });
-                }
-            }
-
-            // Store the listing
-            await Listing.updateOne(
-                { listingKey: listing.listingKey },
-                { $set: listing },
-                { upsert: true }
-            );
-        }
+        await this.databaseService.saveListings(data.listings);
 
         this.logger.info('Successfully stored all MLS data');
 
@@ -302,8 +272,7 @@ class MLSService {
                 upserted: agentResult.upsertedCount
             },
             listings: {
-                matched: data.listings.length,
-                new: newListingsCount
+                total: data.listings.length
             }
         };
     } catch (error) {
@@ -338,6 +307,32 @@ class MLSService {
     } catch (error) {
         this.logger.error('Error sending to Lead Connector:', error.response?.data || error.message);
         throw error;
+    }
+  }
+
+  async syncListings() {
+    try {
+        const mlsListings = await fetchMLSListings();
+
+        for (const listing of mlsListings) {
+            await Listing.findOneAndUpdate(
+                { mlsNumber: listing.mlsNumber },
+                {
+                    ...listing,
+                    status: listing.status,
+                    lastSync: new Date()
+                },
+                { upsert: true, new: true }
+            );
+        }
+
+        // Optional: Remove listings that are no longer pending
+        await Listing.deleteMany({
+            status: { $ne: 'Pending' }
+        });
+
+    } catch (error) {
+        console.error('Error syncing listings:', error);
     }
   }
 }

@@ -1,82 +1,46 @@
-const jwt = require('jsonwebtoken');
-const User = require('../models/User');
-
-// Protect routes - JWT verification
 exports.protect = async (req, res, next) => {
-    // Public routes that don't need authentication
-    const publicRoutes = ['/auth/login', '/auth/register'];
-    // Protected routes that should redirect to dashboard if not authenticated
-    const protectedRoutes = ['/cards', '/list', '/map', '/settings', '/account'];
-
-    if (publicRoutes.includes(req.path)) {
-        return next();
-    }
-
     try {
-        const token = req.session.token;
-        const secret = process.env.JWT_SECRET;
-
-        if (!secret) {
-            console.error('JWT_SECRET is not configured');
+        // Check if user is authenticated via Passport or session token
+        if (!req.isAuthenticated() && !req.session.token) {
+            console.log('User not authenticated, redirecting to login');
+            // Store the intended destination
+            req.session.returnTo = req.originalUrl;
             return res.redirect('/auth/login');
         }
 
-        // If no token and trying to access protected route, redirect to login
-        if (!token) {
-            // Store the requested URL for redirect after login
-            if (protectedRoutes.includes(req.path)) {
-                req.session.returnTo = req.originalUrl;
-            }
-            if (req.path !== '/auth/login') {
-                return res.redirect('/auth/login');
-            }
-            return next();
+        // Log authentication state
+        console.log('User authenticated:', {
+            isPassportAuth: req.isAuthenticated(),
+            hasSessionToken: !!req.session.token,
+            user: req.user
+        });
+
+        // Initialize or maintain filter state
+        if (!req.session.filters) {
+            req.session.filters = {
+                dateFilter: 'all',
+                priceFilter: 'all',
+                zipCodes: [],
+                limit: 12
+            };
         }
 
-        // Verify token
-        const decoded = jwt.verify(token, secret);
-        const user = await User.findById(decoded.id).select('-password');
+        // Update filters if provided in query
+        if (req.query.dateFilter) req.session.filters.dateFilter = req.query.dateFilter;
+        if (req.query.priceFilter) req.session.filters.priceFilter = req.query.priceFilter;
+        if (req.query.zipCodes) req.session.filters.zipCodes = req.query.zipCodes.split(',');
+        if (req.query.limit) req.session.filters.limit = parseInt(req.query.limit);
 
-        if (!user) {
-            req.session.destroy();
-            return res.redirect('/auth/login');
-        }
+        // Make filters and user available to all views
+        res.locals.filters = req.session.filters;
+        res.locals.user = req.user || req.session.user;
 
-        // User is authenticated
-        req.user = user;
-        res.locals.user = user;
         next();
-
     } catch (error) {
         console.error('Auth middleware error:', error);
-        req.session.destroy();
-        res.redirect('/auth/login');
-    }
-};
-
-// Admin check middleware
-exports.isAdmin = (req, res, next) => {
-    if (req.user && req.user.role === 'admin') {
-        next();
-    } else {
-        res.status(403).render('error', {
-            message: 'Access denied. Admin privileges required.'
+        res.status(500).render('error', { 
+            message: 'Authentication error', 
+            error 
         });
     }
-};
-
-// Add utility function to generate JWT
-exports.generateToken = (user) => {
-    return jwt.sign(
-        { id: user._id, role: user.role },
-        process.env.JWT_SECRET,
-        { expiresIn: '1d' }
-    );
-};
-
-// Add flash messages middleware
-exports.setFlashMessages = (req, res, next) => {
-    res.locals.errors = req.flash('error');
-    res.locals.successes = req.flash('success');
-    next();
-};
+}; 

@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const Agent = require('../models/Agent');
+const Listing = require('../models/Listing');
 
 class DatabaseService {
   constructor() {
@@ -192,6 +193,175 @@ class DatabaseService {
         .limit(limit);
     } catch (error) {
       console.error('Error fetching recent agents:', error);
+      throw error;
+    }
+  }
+
+  async geocodeAddress(address) {
+    try {
+      const formattedAddress = `${address.street}, ${address.city}, ${address.state} ${address.zip}`;
+      const encodedAddress = encodeURIComponent(formattedAddress);
+      const url = `https://api.mapbox.com/geocoding/v5/mapbox.places/${encodedAddress}.json?access_token=${process.env.MAPBOX_ACCESS_TOKEN}&country=US`;
+
+      console.log('Geocoding URL:', url); // Debug log
+
+      const response = await fetch(url);
+      const data = await response.json();
+
+      console.log('Geocoding response:', data); // Debug log
+
+      if (data.features && data.features[0]) {
+        const [lng, lat] = data.features[0].center;
+        return { lat, lng };
+      }
+      return null;
+    } catch (error) {
+      console.error('Geocoding error:', error);
+      return null;
+    }
+  }
+
+  async saveListing(listingData) {
+    try {
+      // Only geocode if we have a complete address and no coordinates
+      if (
+        listingData.address?.street &&
+        listingData.address?.city &&
+        listingData.address?.state &&
+        listingData.address?.zip &&
+        (!listingData.address?.lat || !listingData.address?.lng)
+      ) {
+        const coordinates = await this.geocodeAddress(listingData.address);
+        if (coordinates) {
+          listingData.address = {
+            ...listingData.address,
+            ...coordinates
+          };
+        }
+      }
+
+      return await Listing.findOneAndUpdate(
+        { listingKey: listingData.listingKey },
+        listingData,
+        { upsert: true, new: true }
+      );
+    } catch (error) {
+      console.error('Error saving listing:', error);
+      throw error;
+    }
+  }
+
+  async saveListings(listings) {
+    console.log('Starting to save', listings.length, 'listings...');
+
+    try {
+        const operations = [];
+
+        for (const listing of listings) {
+            // First check if listing exists and has coordinates
+            const existingListing = await Listing.findOne({ 
+                listingKey: listing.listingKey,
+                'address.lat': { $exists: true },
+                'address.lng': { $exists: true }
+            });
+
+            // Only geocode if it's a new listing or doesn't have coordinates
+            if (!existingListing) {
+                const coordinates = await this.geocodeAddress(listing.address);
+                if (coordinates) {
+                    listing.address.lat = coordinates.lat;
+                    listing.address.lng = coordinates.lng;
+                }
+            }
+
+            operations.push({
+                updateOne: {
+                    filter: { listingKey: listing.listingKey },
+                    update: {
+                        $set: {
+                            ...listing,
+                            lastSync: new Date()
+                        }
+                    },
+                    upsert: true
+                }
+            });
+        }
+
+        if (operations.length > 0) {
+            const result = await Listing.bulkWrite(operations);
+            console.log(`Successfully saved ${listings.length} listings`);
+            return result;
+        }
+
+        return null;
+    } catch (error) {
+        console.error('Error saving listings:', error);
+        throw error;
+    }
+  }
+
+  async getListingsByStatus(status, isActive = true) {
+    try {
+      return await Listing.find({ 
+        status: status,
+        isActive: isActive
+      }).lean();
+    } catch (error) {
+      console.error('Error getting listings by status:', error);
+      throw error;
+    }
+  }
+
+  async updateListingStatus(listingKey, newStatus) {
+    try {
+      return await Listing.findOneAndUpdate(
+        { listingKey: listingKey },
+        {
+          $set: { status: newStatus },
+          $push: {
+            statusHistory: {
+              status: newStatus,
+              timestamp: new Date()
+            }
+          }
+        },
+        { new: true }
+      );
+    } catch (error) {
+      console.error('Error updating listing status:', error);
+      throw error;
+    }
+  }
+
+  async getStatusHistory(listingKey) {
+    try {
+      const listing = await Listing.findOne(
+        { listingKey: listingKey },
+        { statusHistory: 1 }
+      );
+      return listing ? listing.statusHistory : [];
+    } catch (error) {
+      console.error('Error getting status history:', error);
+      throw error;
+    }
+  }
+
+  async getStatusStats() {
+    try {
+      return await Listing.aggregate([
+        {
+          $group: {
+            _id: {
+              status: '$status',
+              isActive: '$isActive'
+            },
+            count: { $sum: 1 }
+          }
+        }
+      ]);
+    } catch (error) {
+      console.error('Error getting status stats:', error);
       throw error;
     }
   }

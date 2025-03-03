@@ -1,0 +1,19 @@
+  <% agents.forEach(agent => { %>
+      <div class="agent-card">
+          <div class="agent-info">
+              <h3><%= agent.name?.full || agent.fullName %></h3>
+              <p><%= agent.officeName %></p>
+              <p>Last Updated: <%= new Date(agent.lastSync).toLocaleString() %></p>
+          </div>
+          <div class="listing-info">
+              <% if (agent.listings && agent.listings.length > 0) { %>
+                  <% const listing = agent.listings[0] %>
+                  <p>Price: $<%= listing.listPrice ? listing.listPrice.toLocaleString() : 'N/A' %></p>
+                  <p>Address: <%= listing.address?.street %></p>
+                  <p>Total Listings: <%= agent.listings.length %></p>
+              <% } else { %>
+                  <p>No active listings</p>
+              <% } %>
+          </div>
+      </div>
+  <% }); %> 

@@ -1,25 +1,61 @@
-
 const mongoose = require('mongoose');
 
 const listingSchema = new mongoose.Schema({
-    listingKey: { type: String, required: true, unique: true },
-    listPrice: Number,
-    listAgentKey: String,
+    listingKey: {
+        type: String,
+        required: true,
+        unique: true
+    },
+    listPrice: {
+        type: Number,
+        required: true
+    },
+    listAgentKey: {
+        type: String,
+        required: true
+    },
+    status: {
+        type: String,
+        required: true,
+        default: 'Under Contract',
+        enum: ['Under Contract']
+    },
+    isActive: {
+        type: Boolean,
+        default: true,
+        index: true
+    },
+    statusHistory: [{
+        status: String,
+        timestamp: {
+            type: Date,
+            default: Date.now
+        }
+    }],
     address: {
         street: String,
         city: String,
         state: String,
-        zip: String
+        zip: String,
+        lat: Number,
+        lng: Number
     },
-    modificationTimestamp: Date,
-    status: String
-}, { 
-    timestamps: true,
-    strict: false 
+    modificationTimestamp: {
+        type: Date,
+        required: true
+    },
+    lastSync: {
+        type: Date,
+        default: Date.now
+    }
+}, {
+    timestamps: true
 });
 
-// Create indexes
-listingSchema.index({ listAgentKey: 1 });
-listingSchema.index({ modificationTimestamp: -1 });
+// Indexes
+listingSchema.index({ 'address.lat': 1, 'address.lng': 1 });
+listingSchema.index({ status: 1, isActive: 1 });
 
-module.exports = mongoose.models.Listing || mongoose.model('Listing', listingSchema);
+const Listing = mongoose.model('Listing', listingSchema);
+
+module.exports = Listing; 

@@ -8,21 +8,6 @@
     <link rel="stylesheet" href="/styles.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script>
-        // Helper function to format dates in Central Time
-        function formatCentralTime(dateString) {
-            const date = new Date(dateString);
-            return date.toLocaleDateString('en-US', {
-                month: 'short',
-                day: 'numeric',
-                year: 'numeric',
-            }) + ' at ' + 
-            date.toLocaleTimeString('en-US', {
-                hour: 'numeric',
-                minute: '2-digit',
-                hour12: true
-            });
-        }
-
         // Auto-refresh the dashboard every 15 minutes (15 * 60 * 1000 milliseconds)
         setInterval(() => {
             window.location.reload();
@@ -33,6 +18,13 @@
             const refreshBtn = document.getElementById('refreshBtn');
             refreshBtn.classList.add('loading');
             window.location.reload();
+        }
+
+        function changePage(limit) {
+            const currentUrl = new URL(window.location.href);
+            currentUrl.searchParams.set('limit', limit);
+            currentUrl.searchParams.set('page', '1'); // Reset to first page when changing limit
+            window.location.href = currentUrl.toString();
         }
     </script>
     <style>
@@ -179,61 +171,182 @@
             margin: 0 1rem;
             color: #7f8c8d;
         }
+        .pagination-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 2rem;
+            padding: 1rem 0;
+        }
+        .results-per-page {
+            display: flex;
+            align-items: center;
+        }
+        .results-per-page select {
+            padding: 0.5rem;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            margin-left: 0.5rem;
+        }
+        .controls-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 1.5rem 0;
+            padding: 1rem 0;
+            border-bottom: 1px solid #edf2f7;
+            gap: 1rem;
+        }
+        .filter-controls {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        .sort-dropdown {
+            padding: 0.5rem 2.5rem 0.5rem 1rem;
+            border: 1px solid #e2e8f0;
+            border-radius: 0.375rem;
+            background-color: #fff;
+            color: #4a5568;
+            font-size: 0.875rem;
+            cursor: pointer;
+            transition: all 0.2s;
+            appearance: none;
+            min-width: 160px;
+        }
+        .sort-dropdown:hover {
+            border-color: #cbd5e0;
+        }
+        .sort-dropdown:focus {
+            outline: none;
+            border-color: #4299e1;
+            box-shadow: 0 0 0 3px rgba(66, 153, 225, 0.1);
+        }
+        .filter-label {
+            font-size: 0.875rem;
+            font-weight: 500;
+            color: #4a5568;
+        }
+        .filter-dropdown {
+            position: relative;
+        }
+        .dropdown-icon {
+            position: absolute;
+            right: 0.75rem;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 1rem;
+            height: 1rem;
+            pointer-events: none;
+            color: #4a5568;
+        }
+        .dropdown-menu {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            z-index: 1000;
+            display: none;
+            min-width: 200px;
+            padding: 0.5rem 0;
+            margin: 0.125rem 0 0;
+            background-color: #fff;
+            border: 1px solid #e2e8f0;
+            border-radius: 0.375rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+        .dropdown-menu.show {
+            display: block;
+        }
+        .dropdown-search {
+            padding: 0.5rem;
+            border-bottom: 1px solid #e2e8f0;
+        }
+        .dropdown-search input {
+            width: 100%;
+            padding: 0.375rem 0.75rem;
+            border: 1px solid #e2e8f0;
+            border-radius: 0.25rem;
+            font-size: 0.875rem;
+        }
+        .dropdown-options {
+            max-height: 300px;
+            overflow-y: auto;
+        }
+        .dropdown-option {
+            display: flex;
+            align-items: center;
+            padding: 0.375rem 1rem;
+            cursor: pointer;
+            font-size: 0.875rem;
+            color: #4a5568;
+        }
+        .dropdown-option:hover {
+            background-color: #f7fafc;
+        }
+        .dropdown-option input[type="checkbox"] {
+            margin-right: 0.5rem;
+        }
+        .zip-options {
+            border-top: 1px solid #e2e8f0;
+            margin-top: 0.5rem;
+            padding-top: 0.5rem;
+        }
     </style>
 </head>
 <body>
     <div class="layout-container">
         <%- include('partials/menu') %>
 
-            <button class="menu-toggle" onclick="toggleMenu()">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="menu-icon">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
-                </svg>
-            </button>
-
         <div class="main-content" id="mainContent">
             <div class="container">
                 <div class="header">
                     <h1>Lubbock MLS</h1>
-                    <span class="highlight">Pending Transaction Detail</span>
+                    <span class="highlight">Cards View</span>
                 </div>
 
-                <div class="search-controls">
-                    <div class="unified-search">
-                        <select id="sortField" onchange="updateSort()" class="sort-dropdown">
-                            <option value="lastSync" <%= sortField === 'lastSync' ? 'selected' : '' %>>Date</option>
-                            <option value="name" <%= sortField === 'name' ? 'selected' : '' %>>Agent Name</option>
-                            <option value="listingInfo.address" <%= sortField === 'listingInfo.address' ? 'selected' : '' %>>Address</option>
-                        </select>
-                        <input 
-                            type="text" 
-                            id="searchInput" 
-                            placeholder="Search by name, MLS ID, or address..."
-                            value="<%= query || '' %>"
-                        >
-                    </div>
-                </div>
+                <div class="controls-container">
+                    <span class="filter-label">Filters:</span>
+                    <div class="filter-controls">
+                        <!-- Date Filter -->
+                        <div class="filter-dropdown">
+                            <select id="dateFilter" class="sort-dropdown">
+                                <option value="all" selected>All Time</option>
+                                <option value="24h">Last 24 Hours</option>
+                                <option value="5d">Last 5 Days</option>
+                                <option value="1w">Last Week</option>
+                                <option value="1m">Last Month</option>
+                            </select>
+                        </div>
 
-                <div class="stats">
-                    <div class="stat-card">
-                        <h3>Total Agents</h3>
-                        <p><%= stats.totalAgents %></p>
-                    </div>
-                    <div class="stat-card">
-                        <h3>Total Pending Transactions</h3>
-                        <p><%= stats.todaySyncs %></p>
-                    </div>
-                    <div class="stat-card">
-                        <h3>Last Sync</h3>
-                        <p><%= new Date(stats.lastSyncTime).toLocaleString('en-US', {
-                            month: 'short',
-                            day: 'numeric',
-                            year: 'numeric',
-                            hour: 'numeric',
-                            minute: 'numeric',
-                            timeZone: 'America/Chicago',
-                            hour12: true
-                        }) %></p>
+                        <!-- Zip Code Filter -->
+                        <div class="filter-dropdown">
+                            <button id="zipCodeBtn" class="sort-dropdown dropdown-toggle">
+                                All Zip Codes
+                            </button>
+                            <div class="dropdown-menu" id="zipCodeMenu">
+                                <div class="dropdown-search">
+                                    <input type="text" placeholder="Search zip codes..." id="zipSearch">
+                                </div>
+                                <div class="dropdown-options">
+                                    <label class="dropdown-option">
+                                        <input type="checkbox" value="all" checked> All Zip Codes
+                                    </label>
+                                    <div class="zip-options" id="zipOptions">
+                                        <!-- Zip codes will be populated dynamically -->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Price Filter -->
+                        <div class="filter-dropdown">
+                            <select id="priceFilter" class="sort-dropdown">
+                                <option value="all" selected>All Prices</option>
+                                <option value="0-200000">$0 - $200,000</option>
+                                <option value="200000-500000">$200,000 - $500,000</option>
+                                <option value="500000+">$500,000+</option>
+                            </select>
+                        </div>
                     </div>
                 </div>
 
@@ -331,74 +444,184 @@
                                 <% } %>
 
                                 <p class="last-updated">
-                                    <strong>Last Updated:</strong> 
-                                    <%= new Date(agent.lastUpdated).toLocaleDateString('en-US', {
-                                        month: 'short',
-                                        day: 'numeric',
-                                        year: 'numeric',
-                                        hour: 'numeric',
-                                        minute: 'numeric',
-                                        timeZone: 'America/Chicago'
-                                    }) %>
+                                    <strong>Last Sync:</strong> 
+                                    <%= DateService.formatDateTime(agent.lastSync) || 'Never' %>
                                 </p>
                             </div>
                         </div>
                     <% }); %>
                 </div>
 
-                <div class="pagination">
-                    <% if (pagination.hasPrev) { %>
-                        <a href="?page=<%= pagination.currentPage - 1 %>&query=<%= query %>&sortField=<%= sortField %>&sortOrder=<%= sortOrder %>">&laquo; Previous</a>
-                    <% } %>
+                <div class="pagination-container">
+                    <div class="results-per-page">
+                        <select class="sort-dropdown" id="limit" name="limit" onchange="changePage(this.value)">
+                            <option value="12" <%= locals.limit == 12 ? 'selected' : '' %>>12 per page</option>
+                            <option value="24" <%= locals.limit == 24 ? 'selected' : '' %>>24 per page</option>
+                            <option value="60" <%= locals.limit == 60 ? 'selected' : '' %>>60 per page</option>
+                        </select>
+                    </div>
 
-                    <span class="page-info">
-                        Page <%= pagination.currentPage %> of <%= pagination.pages %>
-                    </span>
+                    <div class="pagination">
+                        <% if (pagination.hasPrev) { %>
+                            <a href="?page=<%= pagination.currentPage - 1 %>&dateFilter=<%= dateFilter || 'all' %>&priceFilter=<%= priceFilter || 'all' %>&zipCodes=<%= zipCodes || '' %>&limit=<%= locals.limit %>&sortField=lastSync">&laquo; Previous</a>
+                        <% } %>
 
-                    <% if (pagination.hasNext) { %>
-                        <a href="?page=<%= pagination.currentPage + 1 %>&query=<%= query %>&sortField=<%= sortField %>&sortOrder=<%= sortOrder %>">Next &raquo;</a>
-                    <% } %>
+                        <span class="page-info">
+                            Page <%= pagination.currentPage %> of <%= pagination.pages %>
+                            (Showing <%= Math.min(((pagination.currentPage - 1) * limit) + 1, pagination.total) %> - 
+                            <%= Math.min(pagination.currentPage * limit, pagination.total) %> 
+                            of <%= pagination.total || 0 %> total)
+                        </span>
+
+                        <% if (pagination.hasNext) { %>
+                            <a href="?page=<%= pagination.currentPage + 1 %>&dateFilter=<%= dateFilter || 'all' %>&priceFilter=<%= priceFilter || 'all' %>&zipCodes=<%= zipCodes || '' %>&limit=<%= locals.limit %>&sortField=lastSync">Next &raquo;</a>
+                        <% } %>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 
     <script>
-    function search() {
-        const query = document.getElementById('searchInput').value;
-        const sortField = document.getElementById('sortField').value;
-        const sortOrder = document.querySelector('.sort-order').classList.contains('desc') ? 'desc' : 'asc';
+    document.addEventListener('DOMContentLoaded', function() {
+        console.log('DOM loaded, initializing filters...');
 
-        window.location.href = `?query=${encodeURIComponent(query)}&sortField=${sortField}&sortOrder=${sortOrder}`;
-    }
+        // Initialize filters
+        const dateFilter = document.getElementById('dateFilter');
+        const priceFilter = document.getElementById('priceFilter');
+        const zipCodeBtn = document.getElementById('zipCodeBtn');
 
-    function updateSort() {
-        search();
-    }
+        if (dateFilter && priceFilter) {
+            console.log('Found filter elements, attaching listeners...');
 
-    function toggleSortOrder() {
-        const btn = document.querySelector('.sort-order');
-        btn.classList.toggle('desc');
-        btn.classList.toggle('asc');
-        search();
-    }
+            // Add change event listeners to filters
+            dateFilter.addEventListener('change', applyFilters);
+            priceFilter.addEventListener('change', applyFilters);
 
-    // Add event listener for Enter key in search input
-    document.getElementById('searchInput').addEventListener('keypress', function(e) {
-        if (e.key === 'Enter') {
-            search();
+            // Initial zip codes fetch
+            fetchZipCodes();
+        } else {
+            console.error('Filter elements not found:', {
+                dateFilter: !!dateFilter,
+                priceFilter: !!priceFilter
+            });
+        }
+
+        // Toggle zip code dropdown
+        if (zipCodeBtn) {
+            zipCodeBtn.addEventListener('click', function() {
+                document.getElementById('zipCodeMenu').classList.toggle('show');
+            });
+        }
+
+        // Close dropdown when clicking outside
+        document.addEventListener('click', function(e) {
+            if (!e.target.closest('.filter-dropdown')) {
+                document.querySelectorAll('.dropdown-menu').forEach(menu => {
+                    menu.classList.remove('show');
+                });
+            }
+        });
+
+        // Filter zip codes as user types
+        const zipSearch = document.getElementById('zipSearch');
+        if (zipSearch) {
+            zipSearch.addEventListener('input', function(e) {
+                const searchText = e.target.value.toLowerCase();
+                document.querySelectorAll('.zip-options .dropdown-option').forEach(option => {
+                    const zipText = option.textContent.toLowerCase();
+                    option.style.display = zipText.includes(searchText) ? '' : 'none';
+                });
+            });
         }
     });
 
-    function toggleMenu() {
-        const sideMenu = document.getElementById('sideMenu');
-        const menuToggle = document.querySelector('.menu-toggle');
-        const mainContent = document.getElementById('mainContent');
-
-        sideMenu.classList.toggle('collapsed');
-        menuToggle.classList.toggle('collapsed');
-        mainContent.classList.toggle('menu-collapsed');
+    async function fetchZipCodes() {
+        try {
+            const response = await fetch('/api/zip-codes');
+            const zipCodes = await response.json();
+            populateZipCodes(zipCodes);
+        } catch (error) {
+            console.error('Error fetching zip codes:', error);
+        }
     }
+
+    function populateZipCodes(zipCodes) {
+        const zipOptionsContainer = document.getElementById('zipOptions');
+        if (!zipOptionsContainer) {
+            console.error('Zip options container not found');
+            return;
+        }
+
+        zipOptionsContainer.innerHTML = '';
+
+        zipCodes.forEach(({zip, count}) => {
+            const option = document.createElement('label');
+            option.className = 'dropdown-option';
+            option.innerHTML = `
+                <input type="checkbox" value="${zip}">
+                ${zip} (${count})
+            `;
+            zipOptionsContainer.appendChild(option);
+        });
+    }
+
+    async function applyFilters() {
+        console.log('Applying filters...');
+        const cardsContainer = document.querySelector('.agent-cards');
+        if (!cardsContainer) {
+            console.error('Could not find .agent-cards container');
+            return;
+        }
+        cardsContainer.style.opacity = '0.5';  // Show loading state
+
+        const dateFilter = document.getElementById('dateFilter').value;
+        const priceFilter = document.getElementById('priceFilter').value;
+        const selectedZips = Array.from(document.querySelectorAll('.zip-options input[type="checkbox"]:checked'))
+            .map(cb => cb.value);
+        const limit = document.getElementById('limit')?.value || 12;
+
+        try {
+            const url = `/api/cards-data?dateFilter=${dateFilter}&priceFilter=${priceFilter}&zipCodes=${selectedZips.join(',')}&limit=${limit}&page=1&sortField=lastSync`;
+            console.log('Fetching from:', url);
+
+            const response = await fetch(url);
+            const data = await response.json();
+
+            console.log('Received data:', data);
+
+            // Update cards
+            cardsContainer.innerHTML = data.cards;
+
+            // Update pagination
+            const paginationContainer = document.querySelector('.pagination-container');
+            if (paginationContainer) {
+                paginationContainer.innerHTML = data.pagination;
+            } else {
+                console.error('Could not find pagination container');
+            }
+
+            // Update URL without refreshing
+            const newUrl = new URL(window.location.href);
+            newUrl.searchParams.set('dateFilter', dateFilter);
+            newUrl.searchParams.set('priceFilter', priceFilter);
+            newUrl.searchParams.set('zipCodes', selectedZips.join(','));
+            window.history.pushState({}, '', newUrl);
+
+        } catch (error) {
+            console.error('Error applying filters:', error);
+        } finally {
+            cardsContainer.style.opacity = '1';
+        }
+    }
+
+    // Add listener for zip code checkboxes
+    document.addEventListener('change', function(e) {
+        if (e.target.closest('.zip-options')) {
+            console.log('Zip code selection changed');
+            applyFilters();
+        }
+    });
     </script>
 </body>
 </html> 

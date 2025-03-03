@@ -1,0 +1,161 @@
+.map-container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  padding: 20px;
+  gap: 20px;
+}
+
+#map {
+  height: 60vh;
+  width: 100%;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.map-controls {
+  display: flex;
+  gap: 15px;
+  padding: 10px;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.search-box {
+  flex: 1;
+}
+
+.search-box input {
+  width: 100%;
+  padding: 8px 12px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 14px;
+}
+
+.filter-controls {
+  display: flex;
+  gap: 10px;
+}
+
+.filter-select {
+  padding: 8px 12px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 14px;
+  background: white;
+}
+
+.map-button {
+  padding: 8px 16px;
+  background: #3498db;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.map-button:disabled {
+  background: #bdc3c7;
+  cursor: not-allowed;
+}
+
+.listing-details {
+  background: white;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  margin-top: 20px;
+  min-height: 200px;
+  display: none; /* Hidden by default */
+}
+
+.drawing-tools {
+  display: flex;
+  gap: 10px;
+}
+
+.marker {
+  width: 32px;
+  height: 32px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+.marker-default {
+  background-image: url('data:image/svg+xml;charset=UTF-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="%23dc2626"><path d="M12 0C7.31 0 3.5 3.81 3.5 8.5c0 7.94 8.5 15.5 8.5 15.5s8.5-7.56 8.5-15.5C20.5 3.81 16.69 0 12 0zm0 11a2.5 2.5 0 110-5 2.5 2.5 0 010 5z"/></svg>');
+  opacity: 1;
+}
+
+.marker-visited {
+  opacity: 0.6;
+}
+
+.marker-selected {
+  background-image: url('data:image/svg+xml;charset=UTF-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="%2316a34a"><path d="M12 0C7.31 0 3.5 3.81 3.5 8.5c0 7.94 8.5 15.5 8.5 15.5s8.5-7.56 8.5-15.5C20.5 3.81 16.69 0 12 0zm0 11a2.5 2.5 0 110-5 2.5 2.5 0 010 5z"/></svg>');
+  transform: scale(1.2);
+}
+
+.mapboxgl-popup {
+  max-width: 300px;
+}
+
+.mapboxgl-popup-content {
+  padding: 15px;
+  border-radius: 8px;
+  box-shadow: 0 3px 14px rgba(0,0,0,0.15);
+}
+
+.popup-content {
+  font-family: 'Inter', sans-serif;
+}
+
+.popup-price {
+  font-size: 1.2em;
+  font-weight: 600;
+  color: #2a2a2a;
+  margin-bottom: 8px;
+}
+
+.popup-details {
+  font-size: 0.9em;
+  color: #666;
+  line-height: 1.4;
+}
+
+.filter-select {
+  padding: 8px 12px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 14px;
+  min-width: 150px;
+}
+
+.map-button {
+  padding: 8px 16px;
+  background: #3498db;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background-color 0.2s;
+}
+
+.map-button:hover {
+  background: #2980b9;
+}
+
+.map-button:disabled {
+  background: #bdc3c7;
+  cursor: not-allowed;
+}
+
+.drawing-tools {
+  display: flex;
+  gap: 8px;
+} 

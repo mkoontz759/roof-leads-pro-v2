@@ -65,14 +65,24 @@
         }
 
         function toggleMenu() {
-            const sideMenu = document.querySelector('.side-menu');
-            const mainContent = document.querySelector('.main-content');
+            const sideMenu = document.getElementById('sideMenu');
             const menuToggle = document.querySelector('.menu-toggle');
+            const mainContent = document.getElementById('mainContent');
 
             sideMenu.classList.toggle('collapsed');
-            mainContent.classList.toggle('menu-collapsed');
             menuToggle.classList.toggle('collapsed');
+            mainContent.classList.toggle('menu-collapsed');
         }
+
+        document.querySelectorAll('.menu-item').forEach(item => {
+            item.addEventListener('click', (e) => {
+                const sideMenu = document.getElementById('sideMenu');
+                if (sideMenu.classList.contains('collapsed')) {
+                    e.preventDefault();
+                    toggleMenu();
+                }
+            });
+        });
     </script>
 </head>
 <body>
@@ -80,8 +90,8 @@
         <%- include('partials/menu') %>
 
         <button class="menu-toggle" onclick="toggleMenu()">
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" width="16" height="16">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="menu-icon">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
             </svg>
         </button>
 
@@ -89,7 +99,7 @@
             <div class="container">
                 <div class="header">
                     <h1>Lubbock MLS</h1>
-                    <span class="highlight">Pending Transaction Detail</span>
+                    <span class="highlight">Pending Transactions</span>
                 </div>
 
                 <div class="search-controls">
@@ -193,7 +203,7 @@
                         </span>
 
                         <% if (locals.pagination?.hasNext) { %>
-                            <a href="?page=<%= pagination.current + 1 %>&query=<%= locals.query %>&sortField=<%= locals.sortField %>&limit=<%= locals.limit %>">Next &raquo;</a>
+                            <a href="?page=<%= pagination.current + 1 %>&query=<%= locals.query %>&sortField=<%= localds.sortField %>&limit=<%= locals.limit %>">Next &raquo;</a>
                         <% } %>
                     </div>
                 </div>

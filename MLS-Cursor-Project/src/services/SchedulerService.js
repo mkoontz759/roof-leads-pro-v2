@@ -1,79 +1,55 @@
 const cron = require('node-cron');
 const logger = require('./LoggerService');
-
-class SchedulerService {
-    constructor(mlsService, databaseService, webhookService) {
-        this.mlsService = mlsService;
-        this.db = databaseService;
-        this.webhookService = webhookService;
-        this.lastSyncTime = new Date();
-    }
-
-    getLastSyncTime() {
-        return this.lastSyncTime;
-    }
-
-    async startScheduledTasks() {
-        // Run initial sync immediately when service starts
-        await this.runSync();
-        console.log('Initial sync completed at:', this.lastSyncTime);
-
-        // Then schedule future syncs
-        cron.schedule('*/15 * * * *', async () => {
-            await this.runSync();
-        });
-
-        logger.info('Scheduled tasks started - running every 15 minutes');
-    }
-
-    async runSync() {
-        logger.info('Starting scheduled MLS sync job');
-        try {
-            const mlsData = await this.mlsService.getNewPendingContracts();
-            const result = await this.mlsService.storeMLSData(mlsData);
-
-            // Update lastSyncTime after all operations complete
-            this.lastSyncTime = new Date();
-
-            logger.info('MLS sync completed successfully', {
-                agents: result.agents,
-                listings: result.listings,
-                syncTime: this.formatTime(this.lastSyncTime)
-            });
-
-        } catch (error) {
-            logger.error('Error in scheduled MLS sync:', error);
-        }
-    }
-
-    formatTime(date) {
-        return date.toLocaleString('en-US', {
-            timeZone: 'America/Chicago',
-            month: 'short',
-            day: 'numeric',
-            year: 'numeric',
-            hour: 'numeric',
-            minute: 'numeric',
-            hour12: true
-        });
-    }
-}
-
-// Create and export a singleton instance
-let instance = null;
+const DateService = require('./DateService');
 
 function initializeSchedulerService(mlsService, databaseService, webhookService) {
-    if (!instance) {
-        instance = new SchedulerService(mlsService, databaseService, webhookService);
-    }
-    return instance;
+    const scheduledTasks = [];
+    let lastSyncTime = null;
+
+    return {
+        startScheduledTasks: async () => {
+            // Only schedule the task, don't run immediately
+            const mlsSync = cron.schedule('*/15 * * * *', async () => {
+                try {
+                    const startTime = Date.now();
+                    logger.info('Starting scheduled MLS sync job');
+                    const mlsData = await mlsService.getNewPendingContracts();
+                    const result = await mlsService.storeMLSData(mlsData);
+
+                    lastSyncTime = new Date();
+
+                    logger.info('MLS sync completed successfully', {
+                        agents: result.agents,
+                        listings: result.listings,
+                        syncTime: lastSyncTime.toLocaleString('en-US', {
+                            dateStyle: 'medium',
+                            timeStyle: 'short'
+                        }),
+                        timeTaken: `${((Date.now() - startTime) / 1000).toFixed(2)} seconds`
+                    });
+                } catch (error) {
+                    logger.error('MLS sync failed:', error);
+                }
+            }, {
+                scheduled: false  // Don't start immediately
+            });
+
+            // Start the scheduled task
+            mlsSync.start();
+            scheduledTasks.push(mlsSync);
+
+            logger.info('Scheduled tasks started - running every 15 minutes');
+        },
+
+        stopScheduledTasks: async () => {
+            scheduledTasks.forEach(task => task.stop());
+            logger.info('Scheduled tasks stopped');
+        },
+
+        getLastSync: () => {
+            return lastSyncTime || new Date();
+        }
+    };
 }
 
-function getSchedulerService() {
-    return instance;
-}
-
-module.exports = {
-    initializeSchedulerService,
-    getSchedulerService
-}; 
+module.exports = { initializeSchedulerService }; 
