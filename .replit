@@ -1,86 +1,14 @@
-run = "node fix-tailwind.js && npm run replit:run"
-build = "npm run build"
+run = "bash replit-fix.sh"
 entrypoint = "src/app/page.tsx"
-
-[env]
-NEXT_TELEMETRY_DISABLED = "1"
-XDG_CONFIG_HOME = "/config/xdg"
-PATH = "/home/runner/.local/bin:/home/runner/.bun/bin:/home/runner/.nodenv/bin:/home/runner/.nodenv/shims:/home/runner/.cargo/bin:/home/runner/.config/composer/vendor/bin:/home/runner/.gem/bin:/home/runner/.npm/bin:/home/runner/.local/bin:/home/runner/.deno/bin:/home/runner/.pyenv/versions/3.10.12/bin:/nix/var/nix/profiles/default/bin:/nix/store/bqq7zdzx8cz2k8i9z2gbgafsb81wwfcd-nodejs-20.11.0/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
-NODE_ENV = "production"
+hidden = [".config", "package-lock.json"]
 
 [nix]
 channel = "stable-23_11"
 
-[packager]
-language = "nodejs"
-
-[packager.features]
-packageSearch = true
-guessImports = true
-enabledForHosting = false
-
-[languages]
-javascript = "node:18"
-
-[unitTest]
-language = "nodejs"
-
-[languages.javascript]
-pattern = "**/{*.js,*.jsx,*.ts,*.tsx}"
-syntax = "javascript"
-
-[languages.typescript]
-pattern = "**/{*.ts,*.tsx}"
-syntax = "typescript"
-
-[languages.javascript.languageServer]
-start = ["typescript-language-server", "--stdio"]
-
-[debugger]
-support = true
-
-[debugger.interactive]
-transport = "localhost:0"
-startCommand = ["dap-node"]
-
-[debugger.interactive.initializeMessage]
-command = "initialize"
-type = "request"
-
-[debugger.interactive.initializeMessage.arguments]
-clientID = "replit"
-clientName = "replit.com"
-columnsStartAt1 = true
-linesStartAt1 = true
-locale = "en-us"
-pathFormat = "path"
-supportsInvalidatedEvent = true
-supportsProgressReporting = true
-supportsRunInTerminalRequest = true
-supportsVariablePaging = true
-supportsVariableType = true
-
-[debugger.interactive.launchMessage]
-command = "launch"
-type = "request"
-
-[debugger.interactive.launchMessage.arguments]
-args = []
-console = "externalTerminal"
-cwd = "."
-environment = []
-pauseForSourceMap = false
-program = "./index.js"
-request = "launch"
-sourceMaps = true
-stopOnEntry = false
-type = "pwa-node"
-
-[deployment]
-deploymentTarget = "cloudrun"
-build = ["/home/runner/$REPL_SLUG/node_modules/.bin/npm", "run", "build"]
-run = "npm run replit:run"
-ignorePorts = false
+[env]
+NEXT_TELEMETRY_DISABLED = "1"
+NODE_ENV = "production"
+PATH = "/home/runner/.npm/bin:/home/runner/.local/bin:/home/runner/.nvm/versions/node/v18.19.0/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
 
 [[ports]]
 localPort = 3000
