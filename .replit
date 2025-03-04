@@ -1,8 +1,6 @@
-run = "npm run replit:run"
+run = "npm run replit:start"
+build = "npm run replit:build"
 entrypoint = "src/app/page.tsx"
-
-[nix]
-channel = "stable-22_11"
 
 [env]
 NEXT_TELEMETRY_DISABLED = "1"
@@ -71,9 +69,10 @@ stopOnEntry = false
 type = "pwa-node"
 
 [deployment]
-run = ["sh", "-c", "npm run start"]
-build = ["sh", "-c", "npm run build"]
+build = ["npm", "run", "replit:build"]
+run = ["npm", "run", "replit:start"]
 deploymentTarget = "cloudrun"
+ignorePorts = false
 
 [[ports]]
 localPort = 3000
