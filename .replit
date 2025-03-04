@@ -1,10 +1,11 @@
-run = "npm run start"
+run = ["sh", "-c", "node fix-tailwind.js && npm run replit:run"]
 build = "npm run build"
 entrypoint = "src/app/page.tsx"
 
 [env]
 NEXT_TELEMETRY_DISABLED = "1"
-PATH = "/home/runner/$REPL_SLUG/.bin:/home/runner/$REPL_SLUG/node_modules/.bin:/home/runner/.nvm/versions/node/v18.19.0/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
+XDG_CONFIG_HOME = "/config/xdg"
+PATH = "/home/runner/.local/bin:/home/runner/.bun/bin:/home/runner/.nodenv/bin:/home/runner/.nodenv/shims:/home/runner/.cargo/bin:/home/runner/.config/composer/vendor/bin:/home/runner/.gem/bin:/home/runner/.npm/bin:/home/runner/.local/bin:/home/runner/.deno/bin:/home/runner/.pyenv/versions/3.10.12/bin:/nix/var/nix/profiles/default/bin:/nix/store/bqq7zdzx8cz2k8i9z2gbgafsb81wwfcd-nodejs-20.11.0/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
 NODE_ENV = "production"
 
 [nix]
@@ -33,7 +34,7 @@ pattern = "**/{*.ts,*.tsx}"
 syntax = "typescript"
 
 [languages.javascript.languageServer]
-start = [ "typescript-language-server", "--stdio" ]
+start = ["typescript-language-server", "--stdio"]
 
 [debugger]
 support = true
@@ -78,7 +79,7 @@ type = "pwa-node"
 [deployment]
 deploymentTarget = "cloudrun"
 build = ["/home/runner/$REPL_SLUG/node_modules/.bin/npm", "run", "build"]
-run = ["/home/runner/$REPL_SLUG/node_modules/.bin/npm", "run", "start"]
+run = ["sh", "-c", "npm run replit:run"]
 ignorePorts = false
 
 [[ports]]
