@@ -1,4 +1,4 @@
-run = ["sh", "-c", "node fix-tailwind.js && npm run replit:run"]
+run = "node fix-tailwind.js && npm run replit:run"
 build = "npm run build"
 entrypoint = "src/app/page.tsx"
 
@@ -41,7 +41,7 @@ support = true
 
 [debugger.interactive]
 transport = "localhost:0"
-startCommand = [ "dap-node" ]
+startCommand = ["dap-node"]
 
 [debugger.interactive.initializeMessage]
 command = "initialize"
@@ -79,7 +79,7 @@ type = "pwa-node"
 [deployment]
 deploymentTarget = "cloudrun"
 build = ["/home/runner/$REPL_SLUG/node_modules/.bin/npm", "run", "build"]
-run = ["sh", "-c", "npm run replit:run"]
+run = "npm run replit:run"
 ignorePorts = false
 
 [[ports]]
