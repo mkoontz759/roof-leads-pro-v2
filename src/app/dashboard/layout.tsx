@@ -5,14 +5,12 @@ import { Button } from '@/components/ui/button'
 import { Menu, X } from 'lucide-react'
 import { cn } from '@/lib/utils'
 import { Nav } from '@/components/nav'
-import { BarChart2, Users, FileText, Map, Settings, User } from 'lucide-react'
+import { BarChart2, Users, Settings, User } from 'lucide-react'
 import { AuthCheck } from './auth-check'
 
 const navigation = [
   { name: 'Dashboard', href: '/dashboard', icon: BarChart2 },
   { name: 'Agents', href: '/dashboard/agents', icon: Users },
-  { name: 'Transactions', href: '/dashboard/transactions', icon: FileText },
-  { name: 'Map View', href: '/dashboard/map', icon: Map },
   { name: 'Settings', href: '/dashboard/settings', icon: Settings },
   { name: 'Account', href: '/dashboard/account', icon: User },
 ]

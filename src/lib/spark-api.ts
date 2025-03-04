@@ -1,13 +1,12 @@
 import axios from 'axios'
 
-const SPARK_API_TOKEN = process.env.SPARK_API_TOKEN || '3tk5g91q5f96npri34ilsb6a5'
-const SPARK_API_URL = 'https://replication.sparkapi.com'
+const SPARK_API_TOKEN = process.env.SPARK_API_TOKEN
+const SPARK_API_URL = process.env.SPARK_API_URL || 'https://replication.sparkapi.com'
 
 // Add debugging
 console.log('Spark API Configuration:', {
   token: SPARK_API_TOKEN ? '****' + SPARK_API_TOKEN.slice(-4) : 'NOT SET',
-  url: SPARK_API_URL,
-  fullToken: SPARK_API_TOKEN // Temporarily log full token for debugging
+  url: SPARK_API_URL
 })
 
 // Add more specific types based on the response we got

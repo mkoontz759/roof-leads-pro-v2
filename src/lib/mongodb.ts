@@ -25,8 +25,6 @@ let clientPromise: Promise<MongoClient>
 // In development mode, use a global variable so that the value
 // is preserved across module reloads caused by HMR (Hot Module Replacement).
 if (process.env.NODE_ENV === 'development') {
-  // In development mode, use a global variable so that the value
-  // is preserved across module reloads caused by HMR (Hot Module Replacement).
   let globalWithMongo = global as typeof globalThis & {
     _mongoClientPromise?: Promise<MongoClient>
   }
@@ -44,7 +42,7 @@ if (process.env.NODE_ENV === 'development') {
 
 // Export a module-scoped MongoClient promise. By doing this in a
 // separate module, the client can be shared across functions.
-export { clientPromise }
+export { clientPromise, mongoose }
 
 // For Mongoose connections (used by existing models)
 let isConnected = false
@@ -73,6 +71,4 @@ export async function disconnectDB() {
     console.error('Failed to disconnect from MongoDB:', error)
     throw error
   }
-}
-
-export { mongoose } 
+} 

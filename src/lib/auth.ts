@@ -2,7 +2,6 @@ import { MongoDBAdapter } from "@next-auth/mongodb-adapter"
 import { NextAuthOptions } from "next-auth"
 import { clientPromise } from "@/lib/mongodb"
 import CredentialsProvider from "next-auth/providers/credentials"
-import GoogleProvider from "next-auth/providers/google"
 import bcrypt from "bcryptjs"
 import { connectDB } from "@/lib/mongodb"
 import mongoose from "mongoose"
@@ -36,10 +35,6 @@ export const authOptions: NextAuthOptions = {
     maxAge: 30 * 24 * 60 * 60,
   },
   providers: [
-    GoogleProvider({
-      clientId: process.env.GOOGLE_CLIENT_ID!,
-      clientSecret: process.env.GOOGLE_CLIENT_SECRET!,
-    }),
     CredentialsProvider({
       name: "credentials",
       credentials: {

@@ -3,8 +3,8 @@ import axios from 'axios'
 import { connectDB } from '@/lib/mongodb'
 
 const API_KEY = process.env.CRON_SECRET || 'localdev'
-const SPARK_API_TOKEN = process.env.SPARK_API_TOKEN || '3tk5g91q5f96npri34ilsb6a5'
-const SPARK_API_URL = 'https://replication.sparkapi.com'
+const SPARK_API_TOKEN = process.env.SPARK_API_TOKEN
+const SPARK_API_URL = process.env.SPARK_API_URL || 'https://replication.sparkapi.com'
 
 interface ServiceResponse {
   status: string;

@@ -6,8 +6,6 @@ import { cn } from '@/lib/utils'
 import {
   LayoutDashboard,
   Users,
-  Home,
-  Map,
   Settings,
   User,
   LogOut,
@@ -29,16 +27,6 @@ export function Nav({ hideSignOut = false }: { hideSignOut?: boolean }) {
       href: '/dashboard/agents',
       label: 'Agent Cards',
       icon: Users
-    },
-    {
-      href: '/dashboard/transactions',
-      label: 'Property List',
-      icon: Home
-    },
-    {
-      href: '/dashboard/map',
-      label: 'Map View',
-      icon: Map
     },
     {
       href: '/dashboard/admin/zip-codes',

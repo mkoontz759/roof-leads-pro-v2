@@ -1,7 +1,11 @@
 import axios, { AxiosInstance } from 'axios'
 
 const SPARK_API_URL = process.env.SPARK_API_URL || 'https://replication.sparkapi.com'
-const SPARK_API_TOKEN = process.env.SPARK_API_TOKEN || '3tk5g91q5f96npri34ilsb6a5'
+const SPARK_API_TOKEN = process.env.SPARK_API_TOKEN
+
+if (!SPARK_API_TOKEN) {
+  console.error('Warning: SPARK_API_TOKEN environment variable is not set')
+}
 
 export interface SparkAgent {
   MemberKey: string

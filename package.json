@@ -2,6 +2,9 @@
   "name": "realestate-saas",
   "version": "0.1.0",
   "private": true,
+  "engines": {
+    "node": ">=16.0.0"
+  },
   "scripts": {
     "dev": "next dev",
     "build": "next build",
@@ -21,7 +24,9 @@
     "sync:scheduled": "ts-node --project tsconfig.server.json -r tsconfig-paths/register src/scripts/scheduled-sync.ts",
     "sync:full": "ts-node --project tsconfig.server.json -r tsconfig-paths/register src/scripts/scheduled-sync.ts full",
     "migrate": "node src/scripts/migrate-date-fields.js",
-    "prepare": "husky install"
+    "check:env": "ts-node --project tsconfig.server.json -r tsconfig-paths/register src/scripts/check-env-vars.ts",
+    "prepare": "husky install",
+    "replit:run": "npm run build && npm run start"
   },
   "dependencies": {
     "@next-auth/mongodb-adapter": "^1.1.3",

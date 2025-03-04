@@ -5,11 +5,16 @@ import * as dotenv from 'dotenv'
 dotenv.config({ path: '.env.local' })
 
 async function testSparkDirect() {
-  const token = process.env.SPARK_API_TOKEN || '3tk5g91q5f96npri34ilsb6a5'
-  const url = 'https://replication.sparkapi.com/v1/listings'
+  const token = process.env.SPARK_API_TOKEN
+  const url = process.env.SPARK_API_URL || 'https://replication.sparkapi.com/v1/listings'
+
+  if (!token) {
+    console.error('Error: SPARK_API_TOKEN environment variable is not set')
+    process.exit(1)
+  }
 
   console.log('Testing with:', {
-    token: '****' + token.slice(-4),
+    token: token ? '****' + token.slice(-4) : 'NOT SET',
     url
   })
 

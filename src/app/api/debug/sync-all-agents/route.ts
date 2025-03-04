@@ -5,7 +5,7 @@ import axios from 'axios'
 
 const API_KEY = process.env.API_KEY || 'localdev'
 const SPARK_API_URL = process.env.SPARK_API_URL || 'https://replication.sparkapi.com'
-const SPARK_API_TOKEN = process.env.SPARK_API_TOKEN || '3tk5g91q5f96npri34ilsb6a5'
+const SPARK_API_TOKEN = process.env.SPARK_API_TOKEN
 
 export async function GET(request: Request) {
   // Authenticate the request
@@ -17,6 +17,13 @@ export async function GET(request: Request) {
       success: false,
       error: 'Invalid API key'
     }, { status: 401 })
+  }
+  
+  if (!SPARK_API_TOKEN) {
+    return NextResponse.json({
+      success: false,
+      error: 'SPARK_API_TOKEN environment variable is not set'
+    }, { status: 500 })
   }
   
   try {
