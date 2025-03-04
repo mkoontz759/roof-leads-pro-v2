@@ -25,7 +25,7 @@
     "sync:full": "ts-node --project tsconfig.server.json -r tsconfig-paths/register src/scripts/scheduled-sync.ts full",
     "migrate": "node src/scripts/migrate-date-fields.js",
     "check:env": "ts-node --project tsconfig.server.json -r tsconfig-paths/register src/scripts/check-env-vars.ts",
-    "prepare": "husky install",
+    "prepare": "exit 0",
     "replit:run": "npm run build && npm run start",
     "replit:build": "next build",
     "replit:start": "next start -p ${PORT:-3000}"
