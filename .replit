@@ -4,8 +4,11 @@ entrypoint = "src/app/page.tsx"
 
 [env]
 NEXT_TELEMETRY_DISABLED = "1"
-PATH = "/home/runner/$REPL_SLUG/.bin"
+PATH = "/home/runner/$REPL_SLUG/.bin:/home/runner/$REPL_SLUG/node_modules/.bin:/home/runner/.nvm/versions/node/v18.19.0/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
 NODE_ENV = "production"
+
+[nix]
+channel = "stable-23_11"
 
 [packager]
 language = "nodejs"
@@ -14,6 +17,9 @@ language = "nodejs"
 packageSearch = true
 guessImports = true
 enabledForHosting = false
+
+[languages]
+javascript = "node:18"
 
 [unitTest]
 language = "nodejs"
@@ -71,8 +77,8 @@ type = "pwa-node"
 
 [deployment]
 deploymentTarget = "cloudrun"
-build = ["npm", "run", "build"]
-run = ["npm", "run", "start"]
+build = ["/home/runner/$REPL_SLUG/node_modules/.bin/npm", "run", "build"]
+run = ["/home/runner/$REPL_SLUG/node_modules/.bin/npm", "run", "start"]
 ignorePorts = false
 
 [[ports]]
