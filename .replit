@@ -1,10 +1,11 @@
-run = "npm run replit:start"
-build = "npm run replit:build"
+run = "npm run start"
+build = "npm run build"
 entrypoint = "src/app/page.tsx"
 
 [env]
 NEXT_TELEMETRY_DISABLED = "1"
 PATH = "/home/runner/$REPL_SLUG/.bin"
+NODE_ENV = "production"
 
 [packager]
 language = "nodejs"
@@ -69,9 +70,9 @@ stopOnEntry = false
 type = "pwa-node"
 
 [deployment]
-build = ["npm", "run", "replit:build"]
-run = ["npm", "run", "replit:start"]
 deploymentTarget = "cloudrun"
+build = ["npm", "run", "build"]
+run = ["npm", "run", "start"]
 ignorePorts = false
 
 [[ports]]

@@ -1,50 +1,66 @@
-# RoofLeadsPro Replit Setup Summary
+# Replit Deployment Guide for RoofLeadsPro
 
-## Changes Made for Replit Compatibility
+This guide will help you deploy the RoofLeadsPro application on Replit.
 
-1. **Removed Hardcoded API Tokens**
-   - Removed hardcoded SPARK API token from multiple files
-   - Added proper environment variable checks
-   - Updated all API routes to use environment variables
+## Required Environment Variables (Secrets)
 
-2. **Environment Configuration**
-   - Created `.env.example` and `.env.sample` files
-   - Added comprehensive environment variable validation script
-   - Added script to check for hardcoded sensitive values
+Add these to Replit Secrets (lock icon in the sidebar):
 
-3. **Replit Configuration**
-   - Created `.replit` configuration file
-   - Added `replit:run` script to package.json
-   - Set Node.js engine requirements
+| Secret Name | Description | Example |
+|-------------|-------------|---------|
+| `MONGODB_URI` | MongoDB connection string | `mongodb+srv://user:pass@cluster.mongodb.net/database` |
+| `NEXTAUTH_URL` | Full URL of your Replit app | `https://roof-leads-pro-v2.replit.app` |
+| `NEXTAUTH_SECRET` | Secret for NextAuth sessions | `your-secure-random-string` |
+| `NEXT_PUBLIC_APP_URL` | Same as NEXTAUTH_URL | `https://roof-leads-pro-v2.replit.app` |
+| `APP_NAME` | Application name | `RoofLeadsPro` |
 
-4. **Documentation**
-   - Created `README-REPLIT.md` with detailed setup instructions
-   - Added troubleshooting guidance for common issues
+## Deployment Steps
 
-## Pre-Deployment Checklist
+1. **Import from GitHub**:
+   - Go to [replit.com/new](https://replit.com/new)
+   - Click "Import from GitHub"
+   - Enter your repository URL
+   - Click "Import"
 
-Before pushing to GitHub and deploying to Replit, ensure:
+2. **Add Environment Variables**:
+   - Click the lock icon in the sidebar
+   - Add all required secrets listed above
+   - Click "Add new secret" for each one
 
-1. **Environment Variables**
-   - All required environment variables are documented
-   - No hardcoded secrets remain in the codebase
-   - The `.env.local` file is in `.gitignore`
+3. **Deploy the Application**:
+   - Click the "Run" button
+   - Wait for the build to complete
+   - Your app should be live at your Replit URL
 
-2. **Build Process**
-   - The build process works locally: `npm run build`
-   - The application starts correctly: `npm run start`
-   - The Replit run command works: `npm run replit:run`
+## Troubleshooting
 
-3. **MongoDB Connection**
-   - MongoDB connection string is properly configured
-   - Database access is set up with proper permissions
-   - IP access control is configured (whitelist Replit IPs or allow all)
+If you encounter issues:
 
-4. **API Integrations**
-   - SPARK API token is valid and properly configured
-   - All API endpoints are using environment variables
-   - Rate limiting is properly configured
+1. **Build Errors**:
+   - Check the console output for specific errors
+   - Verify all required secrets are set
+   - Make sure your MongoDB connection is valid
 
-## Replit Setup Instructions
+2. **Runtime Errors**:
+   - Check browser console for client-side errors
+   - Check Replit logs for server-side errors
 
-See `README-REPLIT.md` for detailed setup instructions. 
+3. **Database Connection Issues**:
+   - Ensure your MongoDB URI is correct
+   - Check if your IP is whitelisted in MongoDB Atlas
+   - Verify the database name in the connection string
+
+## Maintenance
+
+To update your deployment:
+
+1. Push changes to GitHub
+2. In Replit, pull the latest changes
+3. Click "Run" to rebuild and restart
+
+## Support
+
+If you need help, please refer to:
+- [Next.js Documentation](https://nextjs.org/docs)
+- [NextAuth.js Documentation](https://next-auth.js.org)
+- [Replit Documentation](https://docs.replit.com) 
