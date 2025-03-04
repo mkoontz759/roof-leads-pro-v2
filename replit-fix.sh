@@ -24,9 +24,10 @@ cat > package.json << 'EOL'
     "prepare": "exit 0"
   },
   "dependencies": {
-    "@next-auth/mongodb-adapter": "^2.0.0",
+    "@next-auth/mongodb-adapter": "^1.1.3",
     "mongodb": "^5.9.2",
-    "next": "^14.2.20",
+    "mongoose": "^8.11.0",
+    "next": "14.2.20",
     "next-auth": "^4.24.11",
     "react": "18.2.0",
     "react-dom": "18.2.0",
@@ -74,24 +75,47 @@ EOL
 echo "Cleaning existing build..."
 rm -rf .next node_modules
 
+# Create basic eslint config to avoid dependency on eslint plugin
+cat > .eslintrc.json << 'EOL'
+{
+  "extends": "next/core-web-vitals"
+}
+EOL
+
+# Make sure npm is available
+echo "Setting up npm..."
+export PATH=/home/runner/.nvm/versions/node/v18.19.0/bin:$PATH
+
 # Install dependencies
 echo "Installing dependencies..."
 npm install --legacy-peer-deps
 
-# Ensure Tailwind is properly installed
-echo "Installing Tailwind CSS globally..."
-npm install -g tailwindcss postcss autoprefixer
+# Install Next.js globally to make sure it's available
+echo "Installing Next.js globally..."
+npm install -g next@14.2.20
 
-echo "Creating symbolic links for Tailwind..."
+# Install Tailwind CSS globally to make it available
+echo "Installing Tailwind CSS globally..."
+npm install -g tailwindcss@3.3.2 postcss@8.4.24 autoprefixer@10.4.14
+
+# Link global binaries to local
+echo "Creating symbolic links..."
 mkdir -p node_modules/.bin
+ln -sf $(which next) node_modules/.bin/next
 ln -sf $(which tailwindcss) node_modules/.bin/tailwindcss
+
+# Verify executable paths
+echo "Verifying paths..."
+which next
+which tailwindcss
 
 # Build the app
 echo "Building the application..."
-NODE_OPTIONS="--max-old-space-size=4096" npm run build
+export NODE_OPTIONS="--max-old-space-size=4096"
+$(which next) build
 
 # Start the app
 echo "Starting the application..."
-npm run start
+$(which next) start -p ${PORT:-3000}
 
 echo "Setup complete!" 
