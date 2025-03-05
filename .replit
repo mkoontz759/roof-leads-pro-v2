@@ -18,7 +18,7 @@ guessImports = true
 enabledForHosting = false
 
 [deployment]
-build = ["npm", "run", "build"]
+build = ["sh", "-c", "npm install --legacy-peer-deps && NODE_OPTIONS='--max-old-space-size=4096' npm run build"]
 run = ["npm", "run", "start"]
 deploymentTarget = "cloudrun"
 ignorePorts = false
