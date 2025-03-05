@@ -1,17 +1,24 @@
-run = "bash replit-fix.sh"
-entrypoint = "src/app/page.tsx"
-hidden = [".config", "package-lock.json"]
+run = "npm run dev"
+hidden = [".build", ".config"]
 
 [nix]
 channel = "stable-23_11"
 
 [env]
-NEXT_TELEMETRY_DISABLED = "1"
-NODE_ENV = "production"
-PATH = "/home/runner/.npm/bin:/home/runner/.local/bin:/home/runner/.nvm/versions/node/v18.19.0/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
+PATH = "/home/runner/$REPL_SLUG/.config/npm/node_global/bin:/home/runner/$REPL_SLUG/node_modules/.bin"
+XDG_CONFIG_HOME = "/home/runner/.config"
+npm_config_prefix = "/home/runner/$REPL_SLUG/.config/npm/node_global"
 
-[[ports]]
-localPort = 3000
-externalPort = 80
+[packager]
+language = "nodejs"
 
+[packager.features]
+packageSearch = true
+guessImports = true
+enabledForHosting = false
 
+[deployment]
+build = ["npm", "run", "build"]
+run = ["npm", "run", "start"]
+deploymentTarget = "cloudrun"
+ignorePorts = false
