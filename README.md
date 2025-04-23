@@ -17,7 +17,8 @@ A real estate SaaS platform for managing property listings, agents, and transact
 - **Backend**: Next.js API routes
 - **Database**: MongoDB
 - **Authentication**: NextAuth.js
-- **Deployment**: Vercel
+- **Development**: Cursor with Claude 3.5 Sonnet
+- **Deployment**: Replit (already have a subscription)
 
 ## Getting Started
 
